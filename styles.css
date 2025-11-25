@@ -288,6 +288,30 @@ nav a.active {
     }
 }
 
+/* Two-column specs */
+.specs-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.spec-group h3 {
+    color: var(--red);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.spec-group p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .specs-two-col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
 /* Main Content */
 main {
     max-width: var(--max-width);
