@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Red Scientific</title>
+    <meta name="description" content="About Red Scientific and Joel Cooper - advancing road safety through research, education, and device development.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="research.html">Research</a>
+                <a href="devices.html">Devices</a>
+                <a href="publications.html">Publications</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>About</h1>
+        <p>Road safety through research, education, and device development</p>
+    </div>
+
+    <main>
+        <section>
+            <div class="about-header">
+                <img src="images/joel-cooper.jpg" alt="Joel Cooper">
+                <div>
+                    <h2>Joel Cooper</h2>
+                    <p>Joel Cooper founded Red Scientific to bridge the gap between academic research and practical tools for measuring human attention. With a background in human factors and cognitive science, Joel has focused his career on understanding driver distraction and developing methods to measure it reliably.</p>
+                    <p>His work spans device development, research methodology, and applied studies with industry partners. The goal: safer roads through better understanding of human attention.</p>
+                    <div class="credentials">
+                        <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+                        <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Mission</h2>
+            <p>Red Scientific exists to advance road safety through three interconnected activities:</p>
+            <ul class="feature-list">
+                <li><strong>Research</strong> — Conducting applied studies that generate actionable insights about driver attention and distraction</li>
+                <li><strong>Education</strong> — Sharing knowledge through publications, presentations, and collaboration with academic and industry partners</li>
+                <li><strong>Device Development</strong> — Building practical, reliable tools that enable other researchers to measure attention accurately</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Approach</h2>
+            <p>We believe good research requires good tools. That's why we don't just conduct studies—we build the instruments needed to do the work properly. Our devices are designed by researchers, for researchers, with an emphasis on precision, ease of use, and adherence to international standards.</p>
+            <p>We work with automotive manufacturers, government agencies, and university research labs to tackle real-world questions about driver attention and vehicle safety.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Red Scientific. <a href="contact.html">Contact us</a></p>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

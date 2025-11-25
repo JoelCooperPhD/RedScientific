@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Logger | Red Scientific</title>
+    <meta name="description" content="Data acquisition and logging software for human factors research. Synchronize multiple devices and capture precise timing data.">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo"><img src="../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html" class="active">Devices</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>RS Logger</h1>
+        <p>Data acquisition software for human factors research</p>
+    </div>
+
+    <main>
+        <section class="device-hero">
+            <img src="../images/logger.webp" alt="RS Logger Software" class="device-image">
+        </section>
+
+        <section>
+            <h2>Overview</h2>
+            <p>RS Logger is data acquisition and logging software purpose-built for human factors research. It provides a unified interface for controlling Red Scientific devices, capturing synchronized data streams, and managing experimental sessions.</p>
+            <p>Designed by researchers for researchers, RS Logger handles the technical complexity of multi-device synchronization so you can focus on your study design and data analysis.</p>
+        </section>
+
+        <section>
+            <h2>Key Capabilities</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Device Control</h3>
+                    <p>Configure and control Visual Occlusion Goggles and DRT systems from a single interface. Set timing parameters, stimulus patterns, and recording options.</p>
+                </div>
+                <div class="card">
+                    <h3>Synchronized Recording</h3>
+                    <p>Capture data from multiple devices with precise time alignment. All events are timestamped to a common clock for accurate cross-device analysis.</p>
+                </div>
+                <div class="card">
+                    <h3>Real-Time Display</h3>
+                    <p>Monitor incoming data during sessions. View response times, hit rates, and device status in real time to catch issues before they affect your data.</p>
+                </div>
+                <div class="card">
+                    <h3>Event Marking</h3>
+                    <p>Insert timestamped markers during recording to annotate task phases, conditions, or notable events. Markers are embedded in the data stream for easy segmentation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul class="feature-list">
+                <li>Multi-device synchronization with sub-millisecond precision</li>
+                <li>Session management and participant tracking</li>
+                <li>Configurable recording parameters</li>
+                <li>Real-time data visualization</li>
+                <li>Keyboard shortcuts for event marking</li>
+                <li>Export to CSV and common analysis formats</li>
+                <li>TTL trigger support for external system integration</li>
+                <li>Session notes and metadata logging</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Data Export</h2>
+            <p>RS Logger exports data in formats ready for analysis:</p>
+            <ul class="feature-list">
+                <li><strong>CSV files</strong> — Compatible with Excel, R, Python, SPSS, and other analysis tools</li>
+                <li><strong>Timestamped events</strong> — Every stimulus, response, and marker includes precise timing</li>
+                <li><strong>Session metadata</strong> — Participant ID, condition labels, and session notes included</li>
+                <li><strong>Calculated metrics</strong> — Response times, hit rates, and summary statistics pre-computed</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>System Requirements</h2>
+            <ul class="feature-list">
+                <li>Windows 10 or later</li>
+                <li>USB ports for device connection</li>
+                <li>Minimum 4GB RAM</li>
+                <li>100MB disk space</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Get Started</h2>
+            <p>RS Logger is included with Red Scientific hardware devices. Contact us to learn more about our integrated research solutions.</p>
+            <p><a href="../contact.html" class="btn btn-primary">Contact Us</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Red Scientific. <a href="../contact.html">Contact us</a></p>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

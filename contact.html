@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Red Scientific</title>
+    <meta name="description" content="Contact Red Scientific for research collaboration, device inquiries, or general questions.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="research.html">Research</a>
+                <a href="devices.html">Devices</a>
+                <a href="publications.html">Publications</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Contact</h1>
+        <p>Get in touch about research collaboration, devices, or general inquiries</p>
+    </div>
+
+    <main>
+        <section>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Direct Contact</h3>
+                    <p><strong>Joel Cooper</strong></p>
+                    <p>Email: <a href="mailto:joel@redscientific.com">joel@redscientific.com</a></p>
+                    <p>Phone: <a href="tel:+18015201234">801-520-1234</a></p>
+
+                    <h3 style="margin-top: 2rem;">Connect</h3>
+                    <p><a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></p>
+                    <p><a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a></p>
+                </div>
+
+                <div>
+                    <h3>Send a Message</h3>
+                    <form name="contact" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Red Scientific. <a href="contact.html">Contact us</a></p>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
