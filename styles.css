@@ -220,6 +220,51 @@ nav a.active {
     flex-wrap: wrap;
 }
 
+/* Procedure Steps */
+.procedure-steps {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.procedure-step {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content strong {
+    display: block;
+    color: var(--gray-dark);
+    margin-bottom: 0.25rem;
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .procedure-steps {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
 .specs-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
