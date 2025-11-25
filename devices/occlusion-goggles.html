@@ -47,14 +47,32 @@
 
         <section>
             <h2>How It Works</h2>
-            <p>During testing, the goggles alternate between opaque and transparent states at precise intervals:</p>
+            <p>During testing, the goggles alternate between opaque and transparent states at precise intervals. Participants perform in-vehicle tasks while vision is periodically blocked:</p>
             <ul class="feature-list">
-                <li><strong>1.5-second open intervals</strong> — Participants can view the in-vehicle interface</li>
-                <li><strong>1.5-second closed intervals</strong> — Vision is occluded, simulating eyes-on-road time</li>
                 <li><strong>Total Task Time (TTT)</strong> — Sum of open intervals needed to complete the task</li>
-                <li><strong>Resumability</strong> — Measures how well users can resume tasks after interruption</li>
+                <li><strong>Resumability (R)</strong> — How well users resume tasks after each interruption</li>
+                <li><strong>Occlusion Ratio</strong> — Comparison of occluded vs. unoccluded performance</li>
             </ul>
-            <p>By summing the duration of unoccluded vision periods, the technique estimates how long a driver would need to look away from the road to perform a secondary task. NHTSA guidelines specify that tasks should be completable within 12 seconds of cumulative glance time.</p>
+            <p>NHTSA guidelines specify that tasks should be completable within 12 seconds of cumulative glance time.</p>
+        </section>
+
+        <section>
+            <h2>Test Procedure</h2>
+            <p>The ISO 16673 occlusion method uses timed intervals to simulate driver glances:</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Open Interval (1.5s)</h3>
+                    <p>Lenses become transparent. Participants can view the in-vehicle interface and continue their task. Simulates a glance away from the road.</p>
+                </div>
+                <div class="card">
+                    <h3>Closed Interval (1.5s)</h3>
+                    <p>Lenses become opaque. Vision is blocked, simulating eyes-on-road time. Participants must hold their progress until the next open interval.</p>
+                </div>
+                <div class="card">
+                    <h3>Task Completion</h3>
+                    <p>The cycle repeats until the task is complete. Total Task Time sums all open intervals, estimating real-world glance time requirements.</p>
+                </div>
+            </div>
         </section>
 
         <section>
@@ -66,7 +84,7 @@
                 </div>
                 <div class="card">
                     <h3>NHTSA Guidelines</h3>
-                    <p>The U.S. National Highway Traffic Safety Administration's Visual-Manual Driver Distraction Guidelines use occlusion testing as a key acceptance criterion for in-vehicle interfaces.</p>
+                    <p>The U.S. National Highway Traffic Safety Administration's Visual-Manual Driver Distraction Guidelines use occlusion testing as a key acceptance criterion.</p>
                 </div>
             </div>
         </section>
@@ -77,7 +95,7 @@
                 <li>Electronically controlled liquid crystal lenses</li>
                 <li>Rapid state transitions (transparent ↔ opaque)</li>
                 <li>Programmable timing intervals</li>
-                <li>TTL trigger input/output for synchronization</li>
+                <li>TTL trigger I/O for external synchronization</li>
                 <li>Compatible with RS Logger software</li>
                 <li>Lightweight, adjustable frame</li>
                 <li>Battery or USB powered</li>
