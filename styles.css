@@ -377,6 +377,41 @@ p {
     margin-bottom: 1rem;
 }
 
+/* Device Sub-Navigation */
+.device-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--white);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.device-nav a {
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    color: var(--gray-medium);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.device-nav a:hover {
+    background: var(--gray-light);
+    color: var(--gray-dark);
+}
+
+.device-nav a.active {
+    background: var(--red);
+    color: var(--white);
+}
+
+@media (max-width: 768px) {
+    .device-nav {
+        flex-wrap: wrap;
+    }
+}
+
 /* Device Page Hero */
 .device-hero {
     text-align: center;
