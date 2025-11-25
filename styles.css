@@ -220,6 +220,29 @@ nav a.active {
     flex-wrap: wrap;
 }
 
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.spec-item {
+    background: var(--gray-light);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    color: var(--gray-medium);
+}
+
+.spec-item strong {
+    color: var(--gray-dark);
+}
+
+@media (max-width: 768px) {
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* Main Content */
 main {
     max-width: var(--max-width);
