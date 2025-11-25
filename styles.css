@@ -203,6 +203,23 @@ nav a.active {
     color: var(--gray-dark);
 }
 
+.btn-outline {
+    background: transparent;
+    color: var(--red);
+    border: 2px solid var(--red);
+}
+
+.btn-outline:hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
 /* Main Content */
 main {
     max-width: var(--max-width);
