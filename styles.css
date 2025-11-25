@@ -806,3 +806,24 @@ footer a:hover {
     font-weight: 500;
     margin-left: 0.5rem;
 }
+
+/* Collaboration CTA Section */
+.collab-cta {
+    background: var(--gray-light);
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.collab-cta h2 {
+    margin-bottom: 1rem;
+}
+
+.collab-cta p {
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+}
+
+.collab-cta .btn {
+    margin-top: 0.5rem;
+}
