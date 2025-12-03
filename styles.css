@@ -1238,11 +1238,14 @@ footer {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
         color: #1a1a1a !important;
+        -webkit-text-fill-color: #1a1a1a !important;
         font-size: 18px !important;
         font-weight: 500;
         line-height: 1.5;
         display: block;
         width: 100%;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     header nav.open a:hover,
