@@ -1232,6 +1232,7 @@ footer {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
         color: var(--gray-dark);
+        font-size: 1.1rem;
     }
 
     header nav a:hover,
