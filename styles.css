@@ -178,10 +178,11 @@ nav a.active {
 .hero {
     background: var(--dark-bg);
     color: var(--white);
-    padding: 10rem 2rem 6rem;
+    padding: 10rem 2rem 4rem;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     overflow: hidden;
 }
@@ -254,6 +255,35 @@ nav a.active {
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+}
+
+/* Hero Clients */
+.hero-clients {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 3rem auto 0;
+    text-align: center;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    grid-column: 1 / -1;
+}
+
+.hero-clients-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.5rem;
+}
+
+.hero-clients .client-logos {
+    justify-content: center;
+    gap: 2rem 3rem;
+}
+
+.hero-clients .client-logo {
+    height: 35px;
 }
 
 /* Hero Stats */
@@ -448,30 +478,8 @@ p {
 }
 
 /* ============================================
-   CLIENT LOGOS SECTION (Premium)
+   CLIENT LOGOS
    ============================================ */
-.clients-section {
-    background: var(--dark-bg);
-    padding: 5rem 2rem;
-    width: 100%;
-}
-
-.clients-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    text-align: center;
-}
-
-.clients-section h2 {
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-    opacity: 0.6;
-}
-
 .client-logos {
     display: flex;
     justify-content: center;
@@ -1200,7 +1208,7 @@ footer > p a:hover {
     }
 
     .hero {
-        padding: 7rem 1.5rem 3rem;
+        padding: 6rem 1.5rem 2rem;
         min-height: auto;
     }
 
@@ -1218,48 +1226,56 @@ footer > p a:hover {
         max-width: 100%;
     }
 
+    .hero-eyebrow {
+        font-size: 0.7rem;
+        margin-bottom: 1rem;
+    }
+
     .hero h1,
     .hero-split .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
         margin-bottom: 1rem;
+        line-height: 1.2;
     }
 
     .hero p,
     .hero-split .hero-content p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-left: auto;
         margin-right: auto;
         max-width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
     }
 
     .hero-buttons {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
         gap: 0.75rem;
     }
 
     .hero-buttons .btn {
-        width: 100%;
-        max-width: 300px;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.85rem;
     }
 
-    .hero-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem 1rem;
-        margin-top: 2.5rem;
+    .hero-clients {
+        margin-top: 2rem;
         padding-top: 2rem;
-        text-align: center;
     }
 
-    .hero-stat-number {
-        font-size: 1.75rem;
-    }
-
-    .hero-stat-label {
+    .hero-clients-label {
         font-size: 0.7rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-clients .client-logos {
+        gap: 1.5rem 2rem;
+    }
+
+    .hero-clients .client-logo {
+        height: 30px;
     }
 
     main {
@@ -1359,42 +1375,44 @@ footer > p a:hover {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 6rem 1rem 2.5rem;
+        padding: 5.5rem 1rem 1.5rem;
     }
 
     .hero h1,
     .hero-split .hero-content h1 {
-        font-size: 1.75rem;
-        line-height: 1.2;
+        font-size: 1.5rem;
     }
 
     .hero-eyebrow {
-        font-size: 0.65rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.6rem;
     }
 
     .hero p,
     .hero-split .hero-content p {
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        margin-bottom: 1.25rem;
     }
 
-    .hero-stats {
-        gap: 1rem 0.5rem;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .hero-stat {
+        min-width: 70px;
+        padding: 0 0.75rem;
     }
 
     .hero-stat-number {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     .hero-stat-label {
-        font-size: 0.6rem;
-    }
-
-    .btn {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.9rem;
+        font-size: 0.55rem;
     }
 }
