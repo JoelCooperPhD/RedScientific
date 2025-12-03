@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <header class="header-dark">
         <div class="header-inner">
             <a href="index.html" class="logo"><img src="images/logo.png" alt="Red Scientific" class="logo-img"></a>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="research.html" class="active">Research</a>
@@ -121,6 +121,17 @@
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('open');
+        });
+
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+                header.classList.remove('header-dark');
+            } else {
+                header.classList.remove('scrolled');
+                header.classList.add('header-dark');
+            }
         });
     </script>
 </body>

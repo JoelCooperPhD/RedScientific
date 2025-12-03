@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red Scientific | Human Factors Research & Measurement Tools</title>
-    <meta name="description" content="Applied human factors research, measurement tools, and consulting for driver attention, distraction, and road safety.">
+    <meta name="description" content="ISO-compliant measurement tools and applied research for driver attention, distraction, and cognitive load assessment. Trusted by Toyota, Honda, Google, and leading research institutions.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="header-dark">
         <div class="header-inner">
             <a href="index.html" class="logo"><img src="images/logo.png" alt="Red Scientific" class="logo-img"></a>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
             <nav>
                 <a href="index.html" class="active">Home</a>
                 <a href="research.html">Research</a>
@@ -26,10 +29,11 @@
     <section class="hero">
         <div class="hero-split">
             <div class="hero-content">
-                <h1>Human Factors Research & <span>Measurement Tools</span></h1>
-                <p>Applied research, specialized devices, and consulting for driver attention, distraction, and road safety.</p>
+                <span class="hero-eyebrow">ISO-Compliant Research Tools</span>
+                <h1>Precision <span>Attention</span> Measurement</h1>
+                <p>Specialized devices and applied research for driver distraction assessment, cognitive load measurement, and transportation safety.</p>
                 <div class="hero-buttons">
-                    <a href="devices.html" class="btn btn-primary">View Devices</a>
+                    <a href="devices.html" class="btn btn-primary">Explore Devices</a>
                     <a href="research.html" class="btn btn-secondary">Our Research</a>
                 </div>
             </div>
@@ -37,39 +41,227 @@
                 <img src="images/shuttle.png" alt="EasyMile autonomous shuttle research vehicle">
             </div>
         </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">15+</span>
+                <span class="hero-stat-label">Years Research</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">$7M+</span>
+                <span class="hero-stat-label">Grant Funding</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">3,300+</span>
+                <span class="hero-stat-label">Citations</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">50+</span>
+                <span class="hero-stat-label">Publications</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logos Section -->
+    <section class="clients-section">
+        <div class="clients-inner">
+            <h2>Trusted by Industry Leaders</h2>
+            <div class="client-logos">
+                <div class="client-logo">
+                    <img src="images/clients/toyota.svg" alt="Toyota">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/honda.svg" alt="Honda">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/volkswagen.svg" alt="Volkswagen">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/bentley.svg" alt="Bentley">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/google.svg" alt="Google">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/lyft.svg" alt="Lyft">
+                </div>
+                <div class="client-logo">
+                    <img src="images/clients/suzuki.svg" alt="Suzuki">
+                </div>
+            </div>
+        </div>
     </section>
 
     <main>
         <section>
-            <h2>What We Do</h2>
+            <div class="section-header">
+                <span class="section-eyebrow">What We Do</span>
+                <h2>Research-Grade Tools for Human Factors</h2>
+                <p class="lead">We develop ISO-compliant measurement devices and conduct applied research to advance driver safety and attention science.</p>
+            </div>
             <div class="card-grid">
                 <div class="card">
                     <h3>Applied Research</h3>
                     <p>Human factors research focused on driver attention and distraction measurement, cognitive load assessment in applied settings, and transportation safety.</p>
-                    <a href="research.html">Learn more →</a>
+                    <a href="research.html">Learn more &rarr;</a>
                 </div>
                 <div class="card">
                     <h3>Measurement Devices</h3>
-                    <p>Custom-built tools for visual occlusion studies, detection response task (DRT) implementation, and precision data logging software.</p>
-                    <a href="devices.html">View devices →</a>
-                </div>
-                <div class="card">
-                    <h3>Road Safety</h3>
-                    <p>Advancing transportation safety through rigorous human factors research, education, and practical device development.</p>
-                    <a href="about.html">About us →</a>
+                    <p>ISO 16673 and ISO 17488 compliant tools for visual occlusion studies, detection response tasks, and precision data logging. Built for NHTSA guidelines and automotive compliance testing.</p>
+                    <a href="devices.html">View devices &rarr;</a>
                 </div>
             </div>
+        </section>
+
+        <!-- Featured Devices Section (Dark) -->
+        <section class="section-dark">
+            <div class="section-header">
+                <span class="section-eyebrow">Measurement Tools</span>
+                <h2>Precision Instruments for Attention Research</h2>
+                <p class="lead">Purpose-built devices designed by researchers, for researchers.</p>
+            </div>
+            <div class="card-grid">
+                <a href="devices/occlusion-goggles.html" class="card device-card card-link">
+                    <img src="images/occlusion.webp" alt="Visual Occlusion Goggles" class="card-image">
+                    <span class="tag">Hardware</span>
+                    <h3>Visual Occlusion Goggles</h3>
+                    <p>ISO 16673 and NHTSA compliant goggles for measuring visual demand. Electronically controlled lenses quantify how much visual attention tasks require.</p>
+                    <span class="card-cta">Learn more</span>
+                </a>
+
+                <a href="devices/drt.html" class="card device-card card-link">
+                    <img src="images/response.png" alt="DRT Response Button" class="card-image">
+                    <span class="tag">Hardware</span>
+                    <h3>Detection Response Task</h3>
+                    <p>ISO 17488 compliant system for measuring cognitive load. Available in tactile, head-mounted, and remote configurations.</p>
+                    <span class="card-cta">Learn more</span>
+                </a>
+
+                <a href="devices/rs-logger.html" class="card device-card card-link">
+                    <img src="images/logger.webp" alt="RS Logger Software" class="card-image">
+                    <span class="tag">Software</span>
+                    <h3>RS Logger</h3>
+                    <p>Data acquisition software for human factors research. Control devices, capture synchronized data, and export to analysis formats.</p>
+                    <span class="card-cta">Learn more</span>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <span class="section-eyebrow">Expertise</span>
+                <h2>Deep Experience in Driver Safety Research</h2>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Automotive OEMs</h3>
+                    <p>Work with Toyota, Honda, Volkswagen, Bentley, and other manufacturers on infotainment system evaluation and HMI distraction assessment.</p>
+                </div>
+                <div class="card">
+                    <h3>Technology Companies</h3>
+                    <p>Partner with Google, Lyft, and autonomous vehicle developers on attention monitoring and cognitive load research.</p>
+                </div>
+                <div class="card">
+                    <h3>Government &amp; Defense</h3>
+                    <p>Support NHTSA, FHWA, NASA, and international defense organizations with specialized human factors research and testing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="collab-cta">
+            <h2>Ready to Advance Your Research?</h2>
+            <p>Whether you need measurement devices, research collaboration, or consulting on driver attention assessment, we're here to help.</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Red Scientific. <a href="contact.html">Contact us</a></p>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="Red Scientific" class="logo-img">
+                    <p>Precision measurement tools and applied research for driver attention, distraction, and cognitive load assessment.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="devices.html">Devices</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Devices</h4>
+                    <ul>
+                        <li><a href="devices/occlusion-goggles.html">Occlusion Goggles</a></li>
+                        <li><a href="devices/drt.html">Detection Response Task</a></li>
+                        <li><a href="devices/rs-logger.html">RS Logger</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:joel@redscientific.com">joel@redscientific.com</a></li>
+                        <li><a href="tel:+18015205408">801-520-5408</a></li>
+                        <li><a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Red Scientific. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
+        // Mobile menu toggle
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('open');
         });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                header.classList.add('scrolled');
+                header.classList.remove('header-dark');
+            } else {
+                header.classList.remove('scrolled');
+                header.classList.add('header-dark');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate, .stagger-children').forEach(el => {
+            observer.observe(el);
+        });
+
     </script>
 </body>
 </html>

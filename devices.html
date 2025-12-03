@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devices | Red Scientific</title>
-    <meta name="description" content="Specialized measurement devices for attention research: visual occlusion goggles, detection response tasks, and logging software.">
+    <meta name="description" content="ISO-compliant measurement devices for attention research: visual occlusion goggles, detection response tasks, and logging software.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="header-dark">
         <div class="header-inner">
             <a href="index.html" class="logo"><img src="images/logo.png" alt="Red Scientific" class="logo-img"></a>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="research.html">Research</a>
@@ -24,24 +27,27 @@
     </header>
 
     <div class="page-header">
-        <h1>Devices</h1>
-        <p>Standardized tools for measuring attention in applied research</p>
+        <span class="hero-eyebrow">Measurement Tools</span>
+        <h1>Research Devices</h1>
+        <p>ISO-compliant instruments for measuring attention in applied research</p>
     </div>
 
     <main>
         <section>
-            <h2>Measurement Tools</h2>
-            <p>We develop research devices designed for precision, reliability, and compliance with international standards. Our tools implement the ISO and NHTSA protocols used worldwide for driver distraction assessment.</p>
+            <div class="section-header">
+                <h2>Precision Instruments</h2>
+                <p class="lead">We develop research devices designed for precision, reliability, and compliance with international standards. Our tools implement the ISO and NHTSA protocols used worldwide for driver distraction assessment.</p>
+            </div>
         </section>
 
-        <section>
+        <section class="section-dark">
             <div class="card-grid">
                 <a href="devices/occlusion-goggles.html" class="card device-card card-link">
                     <img src="images/occlusion.webp" alt="Visual Occlusion Goggles" class="card-image">
                     <span class="tag">Hardware</span>
                     <h3>Visual Occlusion Goggles</h3>
                     <p>ISO 16673 and NHTSA compliant goggles for measuring visual demand. Electronically controlled lenses alternate between transparent and opaque states to quantify how much visual attention in-vehicle tasks require.</p>
-                    <span class="card-cta">Learn more →</span>
+                    <span class="card-cta">Learn more</span>
                 </a>
 
                 <a href="devices/drt.html" class="card device-card card-link">
@@ -49,21 +55,24 @@
                     <span class="tag">Hardware</span>
                     <h3>Detection Response Task (DRT)</h3>
                     <p>ISO 17488 compliant system for measuring cognitive load. Available in tactile, head-mounted, and remote configurations to assess attentional effects of secondary tasks on driving.</p>
-                    <span class="card-cta">Learn more →</span>
+                    <span class="card-cta">Learn more</span>
                 </a>
 
                 <a href="devices/rs-logger.html" class="card device-card card-link">
                     <img src="images/logger.webp" alt="RS Logger Software" class="card-image">
                     <span class="tag">Software</span>
                     <h3>RS Logger</h3>
-                    <p>Data acquisition software for human factors research. Control devices, capture synchronized data streams, and export to common analysis formats—all from a single interface.</p>
-                    <span class="card-cta">Learn more →</span>
+                    <p>Data acquisition software for human factors research. Control devices, capture synchronized data streams, and export to common analysis formats - all from a single interface.</p>
+                    <span class="card-cta">Learn more</span>
                 </a>
             </div>
         </section>
 
         <section>
-            <h2>Standards We Support</h2>
+            <div class="section-header">
+                <span class="section-eyebrow">Compliance</span>
+                <h2>Standards We Support</h2>
+            </div>
             <div class="card-grid">
                 <div class="card">
                     <h3>ISO 16673:2007</h3>
@@ -80,20 +89,68 @@
             </div>
         </section>
 
-        <section>
+        <section class="collab-cta">
             <h2>Custom Development</h2>
             <p>Need a specialized measurement solution? We work with research teams to develop custom devices and software tailored to specific protocols and requirements.</p>
-            <p><a href="contact.html" class="btn btn-primary">Discuss Your Project</a></p>
+            <a href="contact.html" class="btn btn-primary">Discuss Your Project</a>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Red Scientific. <a href="contact.html">Contact us</a></p>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="Red Scientific" class="logo-img">
+                    <p>Precision measurement tools and applied research for driver attention, distraction, and cognitive load assessment.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="devices.html">Devices</a></li>
+                        <li><a href="publications.html">Publications</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Devices</h4>
+                    <ul>
+                        <li><a href="devices/occlusion-goggles.html">Occlusion Goggles</a></li>
+                        <li><a href="devices/drt.html">Detection Response Task</a></li>
+                        <li><a href="devices/rs-logger.html">RS Logger</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:joel@redscientific.com">joel@redscientific.com</a></li>
+                        <li><a href="tel:+18015205408">801-520-5408</a></li>
+                        <li><a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Red Scientific. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('nav').classList.toggle('open');
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+                header.classList.remove('header-dark');
+            } else {
+                header.classList.remove('scrolled');
+                header.classList.add('header-dark');
+            }
         });
     </script>
 </body>
