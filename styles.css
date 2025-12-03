@@ -1228,7 +1228,8 @@ footer {
         display: flex;
     }
 
-    header nav a {
+    header nav a,
+    header.header-dark nav a {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
         color: var(--gray-dark);
@@ -1236,7 +1237,9 @@ footer {
     }
 
     header nav a:hover,
-    header nav a.active {
+    header nav a.active,
+    header.header-dark nav a:hover,
+    header.header-dark nav a.active {
         color: var(--red);
     }
 
