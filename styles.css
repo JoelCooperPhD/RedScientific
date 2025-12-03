@@ -1239,6 +1239,16 @@ footer {
         color: var(--red);
     }
 
+    /* Fix: Ensure dark header mobile menu has visible text on white dropdown */
+    header.header-dark nav a {
+        color: var(--gray-dark);
+    }
+
+    header.header-dark nav a:hover,
+    header.header-dark nav a.active {
+        color: var(--red);
+    }
+
     header nav a::after {
         display: none;
     }
