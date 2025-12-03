@@ -1232,9 +1232,9 @@ footer {
         display: flex;
     }
 
-    header nav a,
-    header.header-dark nav a,
-    header.scrolled nav a {
+    header nav.open a,
+    header.header-dark nav.open a,
+    header.scrolled nav.open a {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
         color: #1a1a1a !important;
@@ -1245,12 +1245,10 @@ footer {
         width: 100%;
     }
 
-    header nav a:hover,
-    header nav a.active,
-    header.header-dark nav a:hover,
-    header.header-dark nav a.active,
-    header.scrolled nav a:hover,
-    header.scrolled nav a.active {
+    header nav.open a:hover,
+    header nav.open a.active,
+    header.header-dark nav.open a:hover,
+    header.header-dark nav.open a.active {
         color: var(--red) !important;
     }
 
