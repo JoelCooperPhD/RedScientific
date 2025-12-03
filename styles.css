@@ -1200,39 +1200,41 @@ footer > p a:hover {
     }
 
     .hero {
-        padding: 7rem 1.5rem 4rem;
+        padding: 7rem 1.5rem 3rem;
         min-height: auto;
+    }
+
+    .hero-inner,
+    .hero-split {
+        display: block;
+        text-align: center;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    .hero-content {
+        max-width: 100%;
     }
 
     .hero h1,
     .hero-split .hero-content h1 {
-        font-size: 2.25rem;
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 
     .hero p,
     .hero-split .hero-content p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .hero-split {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-    }
-
-    .hero-split .hero-content {
         max-width: 100%;
-        order: 1;
-    }
-
-    .hero-split .hero-content p {
-        max-width: 100%;
+        margin-bottom: 2rem;
     }
 
     .hero-buttons {
-        justify-content: center;
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.75rem;
@@ -1240,22 +1242,13 @@ footer > p a:hover {
 
     .hero-buttons .btn {
         width: 100%;
-        max-width: 280px;
-    }
-
-    .hero-image {
-        order: 0;
-    }
-
-    .hero-image img {
-        max-width: 280px;
-        margin: 0 auto;
-        display: block;
+        max-width: 300px;
     }
 
     .hero-stats {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 1.5rem 1rem;
         margin-top: 2.5rem;
         padding-top: 2rem;
         text-align: center;
@@ -1266,7 +1259,7 @@ footer > p a:hover {
     }
 
     .hero-stat-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     main {
@@ -1279,6 +1272,12 @@ footer > p a:hover {
 
     .card-grid {
         grid-template-columns: 1fr;
+    }
+
+    .device-card .card-image {
+        height: 180px;
+        object-fit: cover;
+        object-position: center;
     }
 
     .procedure-steps {
@@ -1360,7 +1359,7 @@ footer > p a:hover {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 6rem 1rem 3rem;
+        padding: 6rem 1rem 2.5rem;
     }
 
     .hero h1,
@@ -1370,23 +1369,18 @@ footer > p a:hover {
     }
 
     .hero-eyebrow {
-        font-size: 0.7rem;
-        margin-bottom: 1rem;
+        font-size: 0.65rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero p,
     .hero-split .hero-content p {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .hero-image img {
-        max-width: 220px;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
+        gap: 1rem 0.5rem;
         margin-top: 2rem;
         padding-top: 1.5rem;
     }
@@ -1396,15 +1390,11 @@ footer > p a:hover {
     }
 
     .hero-stat-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 
     .btn {
         padding: 0.875rem 1.5rem;
         font-size: 0.9rem;
-    }
-
-    .hero-buttons .btn {
-        max-width: 100%;
     }
 }
