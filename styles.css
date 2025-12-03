@@ -124,6 +124,10 @@ header.header-dark nav a.active {
     color: var(--white);
 }
 
+header.header-dark .menu-toggle {
+    color: var(--white);
+}
+
 .header-inner {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -1243,6 +1247,12 @@ footer > p a:hover {
     nav a {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
+        color: var(--gray-dark);
+    }
+
+    nav a:hover,
+    nav a.active {
+        color: var(--red);
     }
 
     nav a::after {
