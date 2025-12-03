@@ -1229,18 +1229,25 @@ footer {
     }
 
     header nav a,
-    header.header-dark nav a {
+    header.header-dark nav a,
+    header.scrolled nav a {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
-        color: var(--gray-dark);
-        font-size: 1.1rem;
+        color: #1a1a1a !important;
+        font-size: 18px !important;
+        font-weight: 500;
+        line-height: 1.5;
+        display: block;
+        width: 100%;
     }
 
     header nav a:hover,
     header nav a.active,
     header.header-dark nav a:hover,
-    header.header-dark nav a.active {
-        color: var(--red);
+    header.header-dark nav a.active,
+    header.scrolled nav a:hover,
+    header.scrolled nav a.active {
+        color: var(--red) !important;
     }
 
     header nav a::after {
