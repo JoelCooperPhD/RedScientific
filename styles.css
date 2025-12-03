@@ -1409,9 +1409,27 @@ footer > p a:hover {
         padding: 4rem 1.5rem;
     }
 
+    footer {
+        padding: 3rem 1.5rem 2rem;
+    }
+
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+        max-width: none;
+    }
+
+    .footer-column {
+        text-align: center;
     }
 
     .footer-bottom {
@@ -1466,5 +1484,21 @@ footer > p a:hover {
 
     .hero-stat-label {
         font-size: 0.55rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-column {
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-column:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
     }
 }
