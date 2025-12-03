@@ -687,6 +687,7 @@ p {
     width: calc(100% + 4rem);
     border-radius: 12px 12px 0 0;
     object-fit: contain;
+    object-position: center;
     padding: 1rem;
     background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
 }
@@ -1211,6 +1212,8 @@ footer > p a:hover {
     .hero p,
     .hero-split .hero-content p {
         font-size: 1.1rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-split {
@@ -1221,6 +1224,7 @@ footer > p a:hover {
 
     .hero-split .hero-content {
         max-width: 100%;
+        order: 1;
     }
 
     .hero-split .hero-content p {
@@ -1229,25 +1233,40 @@ footer > p a:hover {
 
     .hero-buttons {
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
     }
 
     .hero-image {
-        order: -1;
+        order: 0;
     }
 
     .hero-image img {
-        max-width: 350px;
+        max-width: 280px;
         margin: 0 auto;
+        display: block;
     }
 
     .hero-stats {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        margin-top: 3rem;
+        gap: 1rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        text-align: center;
     }
 
     .hero-stat-number {
-        font-size: 2rem;
+        font-size: 1.75rem;
+    }
+
+    .hero-stat-label {
+        font-size: 0.75rem;
     }
 
     main {
@@ -1340,17 +1359,52 @@ footer > p a:hover {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        padding: 6rem 1rem 3rem;
+    }
+
     .hero h1,
     .hero-split .hero-content h1 {
-        font-size: 1.875rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero p,
+    .hero-split .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-image img {
+        max-width: 220px;
     }
 
     .hero-stats {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    .hero-stat-number {
+        font-size: 1.5rem;
+    }
+
+    .hero-stat-label {
+        font-size: 0.65rem;
     }
 
     .btn {
         padding: 0.875rem 1.5rem;
         font-size: 0.9rem;
+    }
+
+    .hero-buttons .btn {
+        max-width: 100%;
     }
 }
