@@ -1216,7 +1216,7 @@ footer {
         display: block;
     }
 
-    nav {
+    header nav {
         display: none;
         position: absolute;
         top: 100%;
@@ -1229,22 +1229,22 @@ footer {
         box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
 
-    nav.open {
+    header nav.open {
         display: flex;
     }
 
-    nav a {
+    header nav a {
         padding: 1rem 0;
         border-bottom: 1px solid #eee;
         color: var(--gray-dark);
     }
 
-    nav a:hover,
-    nav a.active {
+    header nav a:hover,
+    header nav a.active {
         color: var(--red);
     }
 
-    nav a::after {
+    header nav a::after {
         display: none;
     }
 
