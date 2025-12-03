@@ -1246,6 +1246,7 @@ footer {
         width: 100%;
         opacity: 1 !important;
         visibility: visible !important;
+        background: #f0f0f0 !important;
     }
 
     header nav.open a:hover,
