@@ -143,14 +143,16 @@ header.header-dark .menu-toggle {
 }
 
 .logo-img {
-    height: 36px;
+    height: 62px;
     width: auto;
     transition: filter var(--transition-medium);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
 }
 
-/* Invert logo for dark header */
+/* Logo already has dark background - no filter needed */
 .header-dark .logo-img {
-    filter: brightness(0) invert(1);
+    filter: none;
 }
 
 nav {
@@ -1070,8 +1072,8 @@ footer {
 }
 
 .footer-brand .logo-img {
-    filter: brightness(0) invert(1);
-    height: 30px;
+    filter: none;
+    height: 52px;
 }
 
 .footer-nav {
