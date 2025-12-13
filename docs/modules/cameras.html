@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameras Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Cameras module - synchronized video capture from Raspberry Pi cameras and USB webcams.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html" selected>Cameras</option>
+                <option value="audio.html">Audio</option>
+                <option value="eye-tracker.html">Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html">VOG</option>
+                <option value="gps.html">GPS</option>
+                <option value="notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item active">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="gps.html" class="docs-nav-item">GPS</a>
+                    <a href="notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>Cameras</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Cameras Module</h1>
+                <p class="lead">Synchronized video capture from Raspberry Pi camera modules (IMX296, etc.) and USB webcams with per-frame timing data.</p>
+
+                <p>The Cameras module captures video from CSI ribbon-connected cameras and USB webcams. Each camera runs in its own module instance with configurable resolution and frame rate, allowing you to capture multiple camera views simultaneously.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#recording">Recording Sessions</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#camera-types">Camera Types</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Connect your camera</strong> &mdash; CSI ribbon cable or USB</li>
+                        <li><strong>Enable "Cameras"</strong> &mdash; In the Modules menu</li>
+                        <li><strong>Camera appears</strong> &mdash; In the Devices panel when detected</li>
+                        <li><strong>Click Connect</strong> &mdash; To launch this camera's window</li>
+                        <li><strong>Adjust settings</strong> &mdash; Via the Controls menu if needed</li>
+                        <li><strong>Start a session</strong> &mdash; To begin recording</li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>Preview Display</h3>
+                    <p>Shows a live feed from this camera instance:</p>
+                    <ul>
+                        <li>Preview runs at reduced resolution for performance</li>
+                        <li>Each camera has its own dedicated window</li>
+                    </ul>
+
+                    <h3>Settings Window</h3>
+                    <p>Access via <strong>Controls &gt; Show Settings Window</strong>:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Preview Resolution</td>
+                                <td>Display size (320x240 to 640x480)</td>
+                            </tr>
+                            <tr>
+                                <td>Preview FPS</td>
+                                <td>Live view frame rate (1-15)</td>
+                            </tr>
+                            <tr>
+                                <td>Record Resolution</td>
+                                <td>Capture size (up to sensor maximum)</td>
+                            </tr>
+                            <tr>
+                                <td>Record FPS</td>
+                                <td>Recording frame rate (1-60+)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>IO Metrics Bar</h3>
+                    <p>Shows real-time performance data:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cam</td>
+                                <td>Active camera ID</td>
+                            </tr>
+                            <tr>
+                                <td>In</td>
+                                <td>Input frame rate (from sensor)</td>
+                            </tr>
+                            <tr>
+                                <td>Rec</td>
+                                <td>Recording output rate</td>
+                            </tr>
+                            <tr>
+                                <td>Tgt</td>
+                                <td>Target recording FPS</td>
+                            </tr>
+                            <tr>
+                                <td>Prv</td>
+                                <td>Preview output rate</td>
+                            </tr>
+                            <tr>
+                                <td>Q</td>
+                                <td>Queue depths (preview/record)</td>
+                            </tr>
+                            <tr>
+                                <td>Wait</td>
+                                <td>Frame wait time (ms)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Sessions</h2>
+
+                    <h3>Starting Recording</h3>
+                    <p>When you start a recording session:</p>
+                    <ul>
+                        <li>Video capture begins to an AVI file</li>
+                        <li>Frame timing is logged to a companion CSV</li>
+                        <li>Recording metadata is saved to a separate CSV</li>
+                    </ul>
+
+                    <h3>During Recording</h3>
+                    <ul>
+                        <li>Timestamp overlay shows real-time clock and frame number</li>
+                        <li>Queue metrics help you monitor if recording is keeping up</li>
+                        <li>One video file per camera per trial</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/Cameras/{camera_id}/</code></pre>
+
+                    <h3>Files Generated</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{prefix}_{camera_id}.avi</code></td>
+                                <td>Video file</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_{camera_id}_timing.csv</code></td>
+                                <td>Per-frame timing data</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_{camera_id}_metadata.csv</code></td>
+                                <td>Recording session info</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Example: <code>trial_001_usb_0_001.avi</code></p>
+
+                    <h3>Video File Format</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Container</td>
+                                <td>AVI</td>
+                            </tr>
+                            <tr>
+                                <td>Codec</td>
+                                <td>MJPEG (Motion JPEG)</td>
+                            </tr>
+                            <tr>
+                                <td>Pixel Format</td>
+                                <td>YUV420P</td>
+                            </tr>
+                            <tr>
+                                <td>Resolution</td>
+                                <td>Configurable (default 1280x720)</td>
+                            </tr>
+                            <tr>
+                                <td>Frame Rate</td>
+                                <td>Configurable (default 30 fps)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>The timestamp overlay shows: <code>YYYY-MM-DDTHH:MM:SS.mmm #frame</code></p>
+
+                    <h3>Timing CSV Columns</h3>
+                    <p>The timing CSV contains per-frame timing for precise synchronization with other modules.</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number (integer, may be empty)</td>
+                            </tr>
+                            <tr>
+                                <td><code>frame_index</code></td>
+                                <td>1-based frame number in video file</td>
+                            </tr>
+                            <tr>
+                                <td><code>capture_time_unix</code></td>
+                                <td>Wall clock time when captured (Unix seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>encode_time_mono</code></td>
+                                <td>Monotonic time when encoded (seconds, 9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>sensor_timestamp_ns</code></td>
+                                <td>Hardware sensor timestamp in nanoseconds (CSI cameras only)</td>
+                            </tr>
+                            <tr>
+                                <td><code>video_pts</code></td>
+                                <td>Presentation timestamp in video stream</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>1,1,1733649120.123456,123.456789012,1733649120123456789,1</code></pre>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Note</h3>
+                        <p><code>sensor_timestamp_ns</code> is only available for CSI cameras (Picamera2). USB cameras show empty/None for this field.</p>
+                    </div>
+
+                    <h3>Metadata CSV Columns</h3>
+                    <p>Session-level information about the recording:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>camera_id</code></td>
+                                <td>Camera identifier (e.g., "usb_0_001")</td>
+                            </tr>
+                            <tr>
+                                <td><code>backend</code></td>
+                                <td>Camera type ("usb" or "picam")</td>
+                            </tr>
+                            <tr>
+                                <td><code>start_time_unix</code></td>
+                                <td>Session start (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>end_time_unix</code></td>
+                                <td>Session end (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>target_fps</code></td>
+                                <td>FPS used for encoding</td>
+                            </tr>
+                            <tr>
+                                <td><code>resolution_width</code></td>
+                                <td>Video frame width (pixels)</td>
+                            </tr>
+                            <tr>
+                                <td><code>resolution_height</code></td>
+                                <td>Video frame height (pixels)</td>
+                            </tr>
+                            <tr>
+                                <td><code>video_path</code></td>
+                                <td>Path to video file</td>
+                            </tr>
+                            <tr>
+                                <td><code>timing_path</code></td>
+                                <td>Path to timing CSV</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Timing and Synchronization</h3>
+
+                    <h4>Timestamp Precision</h4>
+                    <ul>
+                        <li><code>capture_time_unix</code>: Microsecond precision (6 decimals)</li>
+                        <li><code>encode_time_mono</code>: Nanosecond precision (9 decimals)</li>
+                        <li><code>sensor_timestamp_ns</code>: Nanosecond precision (CSI cameras only)</li>
+                    </ul>
+
+                    <h4>Frame Timing Notes</h4>
+                    <ul>
+                        <li><strong>USB cameras:</strong> Actual FPS may differ from requested. The encoder uses actual camera FPS to ensure video playback matches real-world timing.</li>
+                        <li><strong>CSI cameras (Picamera2):</strong> Hardware-enforced FPS for consistent timing.</li>
+                    </ul>
+
+                    <h4>Cross-Module Synchronization</h4>
+                    <ul>
+                        <li>Use <code>encode_time_mono</code> or <code>capture_time_unix</code> for cross-module sync</li>
+                        <li>Frame index in CSV matches video frame position exactly</li>
+                        <li>CSV row count equals number of frames in video file</li>
+                    </ul>
+
+                    <h4>Finding a Video Frame at Time T</h4>
+                    <ol>
+                        <li>Search timing CSV for nearest <code>capture_time_unix</code></li>
+                        <li>Use <code>frame_index</code> to seek in video file</li>
+                    </ol>
+                </section>
+
+                <section id="camera-types">
+                    <h2>Camera Types</h2>
+
+                    <h3>Raspberry Pi Camera Modules (CSI)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Feature</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IMX296</td>
+                                <td>Global shutter</td>
+                                <td>No motion blur - ideal for fast-moving subjects and precise timing studies</td>
+                            </tr>
+                            <tr>
+                                <td>IMX219/IMX477</td>
+                                <td>Rolling shutter</td>
+                                <td>General purpose photography</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>CSI cameras provide hardware sensor timestamps (<code>sensor_timestamp_ns</code>) for maximum timing accuracy.</p>
+
+                    <h3>USB Cameras</h3>
+                    <ul>
+                        <li>UVC-compatible webcams</li>
+                        <li>No hardware timestamps (use <code>encode_time_mono</code> instead)</li>
+                        <li>Actual FPS may vary from requested depending on USB bandwidth and camera capability</li>
+                    </ul>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+
+                    <h3>Default Settings</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Default</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Capture Resolution</td>
+                                <td>1280x720</td>
+                                <td>Use native sensor resolution for best quality</td>
+                            </tr>
+                            <tr>
+                                <td>Capture FPS</td>
+                                <td>30.0</td>
+                                <td>Match your experiment requirements</td>
+                            </tr>
+                            <tr>
+                                <td>Preview Size</td>
+                                <td>320x180</td>
+                                <td>Lower = smoother preview</td>
+                            </tr>
+                            <tr>
+                                <td>Preview FPS</td>
+                                <td>10.0</td>
+                                <td>5-10 is usually sufficient for monitoring</td>
+                            </tr>
+                            <tr>
+                                <td>JPEG Quality</td>
+                                <td>80</td>
+                                <td>Balance between quality and file size</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Preview Settings</h3>
+                    <p>For the live display - keep these low for smooth performance:</p>
+                    <ul>
+                        <li>Resolution: 320x240 recommended</li>
+                        <li>FPS: 5-10 is usually sufficient for monitoring</li>
+                    </ul>
+
+                    <h3>Record Settings</h3>
+                    <p>For saved video:</p>
+                    <ul>
+                        <li>Resolution: Use native sensor resolution for best quality</li>
+                        <li>FPS: Match your experiment requirements (30 or 60 typical)</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Camera not appearing in Devices panel</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check physical connection (ribbon cable for CSI, USB for webcams)</li>
+                                <li>Verify USB cameras are recognized by your operating system</li>
+                                <li>Enable "Cameras" in the Modules menu</li>
+                                <li>On Raspberry Pi: Run <code>libcamera-hello</code> or check <code>raspi-config</code> camera settings</li>
+                                <li>On Linux: Run <code>v4l2-ctl --list-devices</code></li>
+                                <li>On macOS/Windows: Check system camera permissions for the application</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Preview is laggy</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Lower preview resolution (320x240)</li>
+                                <li>Reduce preview FPS (5 fps)</li>
+                                <li>Check CPU usage on the system</li>
+                                <li>Close other applications</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Recording drops frames</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Lower record FPS or resolution</li>
+                                <li>Use a faster SD card or SSD</li>
+                                <li>Check available disk space</li>
+                                <li>Monitor the Q (queue) metrics - high values indicate backpressure</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Black or corrupted video</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check camera ribbon cable for damage (CSI cameras)</li>
+                                <li>Verify camera module is seated properly</li>
+                                <li>Test camera with your OS camera app or another application</li>
+                                <li>Check application has permission to access camera</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Empty sensor_timestamp_ns in CSV</summary>
+                        <div class="docs-troubleshoot-content">
+                            <p>This is normal for USB cameras - they don't provide hardware timestamps. Use <code>encode_time_mono</code> for synchronization instead.</p>
+                        </div>
+                    </details>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="../getting-started.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Getting Started</span>
+                </a>
+                <a href="audio.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Audio</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

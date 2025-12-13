@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOG Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger VOG module - Visual Occlusion Glasses for vision research experiments with millisecond-precision shutter control.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html">Cameras</option>
+                <option value="audio.html">Audio</option>
+                <option value="eye-tracker.html">Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html" selected>VOG</option>
+                <option value="gps.html">GPS</option>
+                <option value="notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item active">VOG</a>
+                    <a href="gps.html" class="docs-nav-item">GPS</a>
+                    <a href="notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>VOG</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>VOG Module</h1>
+                <p class="lead">Visual Occlusion Glasses for vision research experiments with millisecond-precision electronic shutter control.</p>
+
+                <p>The VOG (Visual Occlusion Glasses) module controls electronic shutter glasses for vision research experiments. The glasses can rapidly switch between clear (transparent) and opaque states with millisecond precision, enabling precise control of visual stimulus presentation.</p>
+
+                <div class="docs-callout docs-callout-hardware">
+                    <h3>Red Scientific Hardware</h3>
+                    <p>VOG devices are available from Red Scientific. See our <a href="../../devices/occlusion-goggles.html">Occlusion Goggles product page</a> for specifications and purchasing information.</p>
+                </div>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#recording">Recording Sessions</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#experiment-types">Experiment Types</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Connect your VOG device</strong> &mdash; Via USB</li>
+                        <li><strong>Enable the VOG module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Wait for the device tab</strong> &mdash; Indicates successful detection</li>
+                        <li><strong>Use lens controls or start recording</strong></li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>Device Tabs</h3>
+                    <p>Each connected device gets its own tab showing:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Element</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Real-time Chart</td>
+                                <td>Stimulus state and shutter timing over 60 seconds</td>
+                            </tr>
+                            <tr>
+                                <td>Lens Controls</td>
+                                <td>Buttons to manually open/close lenses</td>
+                            </tr>
+                            <tr>
+                                <td>Results Panel</td>
+                                <td>Trial number and timing data (TSOT/TSCT)</td>
+                            </tr>
+                            <tr>
+                                <td>Configure</td>
+                                <td>Opens device settings dialog</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Lens Controls</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Button</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Clear/Open</td>
+                                <td>Opens the lens (transparent)</td>
+                            </tr>
+                            <tr>
+                                <td>Opaque/Close</td>
+                                <td>Closes the lens (blocks vision)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Wireless devices have additional buttons for independent left/right lens control.</p>
+
+                    <h3>Results Display</h3>
+                    <p>After each trial, the panel shows:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Trial Number</td>
+                                <td>Current trial count</td>
+                            </tr>
+                            <tr>
+                                <td>TSOT</td>
+                                <td>Total Shutter Open Time (milliseconds the participant could see)</td>
+                            </tr>
+                            <tr>
+                                <td>TSCT</td>
+                                <td>Total Shutter Close Time (milliseconds the participant was occluded)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Sessions</h2>
+
+                    <h3>Starting a Session</h3>
+                    <p>When you start a recording session:</p>
+                    <ul>
+                        <li>Device enters experiment mode</li>
+                        <li>Chart clears and begins fresh</li>
+                        <li>Trial counter resets to 1</li>
+                    </ul>
+
+                    <h3>During Recording</h3>
+                    <p>Each trial captures:</p>
+                    <ul>
+                        <li>Timing data for all lens state changes</li>
+                        <li>Accumulated open/close durations</li>
+                        <li>Timestamps synchronized to system time</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/VOG/</code></pre>
+
+                    <h3>File Naming</h3>
+                    <pre class="docs-code"><code>{timestamp}_VOG_trial{NNN}_{device_type}_{port}.csv</code></pre>
+                    <p>Example: <code>20251208_143022_VOG_trial001_sVOG_ttyACM0.csv</code></p>
+
+                    <h3>sVOG CSV Columns (7 fields)</h3>
+                    <p>For wired VOG devices:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Device ID</code></td>
+                                <td>Device identifier (e.g., "sVOG")</td>
+                            </tr>
+                            <tr>
+                                <td><code>Label</code></td>
+                                <td>Device port/label (e.g., "ttyACM0")</td>
+                            </tr>
+                            <tr>
+                                <td><code>Unix time in UTC</code></td>
+                                <td>Event timestamp (Unix seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Milliseconds Since Record</code></td>
+                                <td>Time since recording started (ms)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Trial Number</code></td>
+                                <td>Sequential trial count (1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>TSOT</code></td>
+                                <td>Total Shutter Open Time (milliseconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>TSCT</code></td>
+                                <td>Total Shutter Close Time (milliseconds)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>sVOG,ttyACM0,1733649120.123456,5000,1,1500,3500</code></pre>
+
+                    <h3>wVOG CSV Columns (9 fields)</h3>
+                    <p>For wireless VOG devices (same first 7 columns as sVOG, plus):</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Lens</code></td>
+                                <td>Lens state (Open/Closed/Left/Right)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Battery Percent</code></td>
+                                <td>Device battery level (0-100%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>wVOG,xbee_002,1733649120.456789,5500,2,3000,2500,Open,85</code></pre>
+
+                    <h3>Timing and Synchronization</h3>
+
+                    <h4>Timing Precision</h4>
+                    <ul>
+                        <li><strong>TSOT/TSCT:</strong> Millisecond precision (device firmware)</li>
+                        <li><strong>Unix time in UTC:</strong> Microsecond precision (6 decimals)</li>
+                        <li><strong>Lens state changes:</strong> Device-measured (&lt;50ms for close, &lt;15ms for open, continuous state change)</li>
+                    </ul>
+
+                    <h4>Cross-Module Synchronization</h4>
+                    <p>Use "Unix time in UTC" to correlate VOG events with:</p>
+                    <ul>
+                        <li>Video frames (via camera <code>capture_time_unix</code>)</li>
+                        <li>Audio samples (via audio <code>write_time_unix</code>)</li>
+                        <li>DRT trials (via DRT <code>Unix time in UTC</code>)</li>
+                        <li>Eye tracking data (via <code>record_time_unix</code>)</li>
+                    </ul>
+                </section>
+
+                <section id="experiment-types">
+                    <h2>Experiment Types</h2>
+
+                    <h3>Cycle</h3>
+                    <p>Standard visual occlusion testing following NHTSA Visual Manual Distraction Guidelines and ISO 16673.</p>
+                    <p><strong>How it works:</strong> The lenses automatically alternate between clear and opaque at fixed intervals (e.g., 1.5 seconds each). Participants perform a task while only able to see during the clear periods. The system records total shutter open time (TSOT) and total task time.</p>
+                    <p><strong>Use case:</strong> Measuring the visual demand of in-vehicle interfaces and other tasks requiring intermittent visual attention.</p>
+
+                    <h3>Peek</h3>
+                    <p>For testing interfaces where the primary modality is non-visual (e.g., auditory or haptic) but occasional visual confirmation may be needed.</p>
+                    <p><strong>How it works:</strong> Lenses start opaque. Participants press a button to request a "peek" - the lenses clear for a set duration (default 1.5 seconds) then return to opaque. A lockout period prevents consecutive peeks.</p>
+                    <p><strong>Data collected:</strong> Number of peeks and cumulative peek time, providing a measure of visual attention demand for interfaces designed for eyes-free operation.</p>
+                    <p><strong>Use case:</strong> Evaluating voice-controlled or auditory display systems where visual glances should be minimized.</p>
+
+                    <h3>eBlindfold</h3>
+                    <p>For measuring visual search time.</p>
+                    <p><strong>How it works:</strong> Trial begins with lenses clear. The participant searches for a specified target. Upon locating the target, they press the button - the lenses immediately go opaque and the trial ends. Total shutter open time equals search time.</p>
+                    <p><strong>Use case:</strong> Measuring visual search performance, comparing display layouts, or evaluating icon/element discoverability.</p>
+
+                    <h3>Direct</h3>
+                    <p>Simple manual control mode for integrating with external equipment or custom experiment setups.</p>
+                    <p><strong>How it works:</strong> The lenses directly mirror the button state - press and hold to clear, release to go opaque (or vice versa). No timing data is recorded by the glasses themselves.</p>
+                    <p><strong>Use case:</strong> When you need to control the glasses from other laboratory equipment, or for demonstrations and testing.</p>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+                    <p>Click <strong>"Configure Unit"</strong> on any device tab to access settings.</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Open/Close Time</td>
+                                <td>Lens timing duration (ms)</td>
+                            </tr>
+                            <tr>
+                                <td>Debounce</td>
+                                <td>Button debounce time (ms)</td>
+                            </tr>
+                            <tr>
+                                <td>Opacity</td>
+                                <td>Lens transparency levels (0-100%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>The configuration dialog adapts to show available options based on the connected device type.</p>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Device not detected</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check USB connection</li>
+                                <li>Verify device is powered on</li>
+                                <li>Check that your OS recognizes the device:
+                                    <ul>
+                                        <li>Windows: Check Device Manager &gt; Ports (COM &amp; LPT)</li>
+                                        <li>macOS: Check System Information &gt; USB</li>
+                                        <li>Linux: Run <code>lsusb</code> to list USB devices</li>
+                                    </ul>
+                                </li>
+                                <li>Check the log panel for connection errors</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>No data after trial</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Ensure recording was started before the trial</li>
+                                <li>Check that the session directory exists and is writable</li>
+                                <li>Review module logs for errors</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Lens not responding</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Try Configure &gt; Refresh to reload device state</li>
+                                <li>Check battery level (wireless devices)</li>
+                                <li>Reconnect the USB cable</li>
+                                <li>Restart the module</li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="drt.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">DRT</span>
+                </a>
+                <a href="gps.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">GPS</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

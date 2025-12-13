@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for Red Scientific Logger - synchronized multi-sensor data collection for automotive and human factors research.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo"><img src="../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html" class="active">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="index.html" selected>Overview</option>
+            <option value="getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="modules/cameras.html">Cameras</option>
+                <option value="modules/audio.html">Audio</option>
+                <option value="modules/eye-tracker.html">Eye Tracker</option>
+                <option value="modules/drt.html">DRT</option>
+                <option value="modules/vog.html">VOG</option>
+                <option value="modules/gps.html">GPS</option>
+                <option value="modules/notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="data-output.html">Data Output</option>
+                <option value="synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="index.html" class="docs-logo">
+                    <img src="../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="index.html" class="docs-nav-item active">Overview</a>
+                <a href="getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="modules/cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="modules/audio.html" class="docs-nav-item">Audio</a>
+                    <a href="modules/eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="modules/drt.html" class="docs-nav-item">DRT</a>
+                    <a href="modules/vog.html" class="docs-nav-item">VOG</a>
+                    <a href="modules/gps.html" class="docs-nav-item">GPS</a>
+                    <a href="modules/notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../software.html">Software</a>
+                <span>/</span>
+                <span>Documentation</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Logger Documentation</h1>
+                <p class="lead">Synchronized multi-sensor data collection for automotive and human factors research on Raspberry Pi.</p>
+
+                <p>Logger is a professional data acquisition platform designed for researchers who need synchronized capture of video, audio, eye tracking, and behavioral task data. All modules record with <strong>frame-level synchronization</strong> (~30ms accuracy) and export timestamped CSV data for analysis.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#modules">Modules</a></li>
+                        <li><a href="#hardware">Supported Hardware</a></li>
+                        <li><a href="#workflow">Workflow</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#requirements">System Requirements</a></li>
+                    </ul>
+                </nav>
+
+                <section id="modules">
+                    <h2>Modules</h2>
+                    <p>Logger provides seven recording modules that can be used independently or in combination:</p>
+
+                    <div class="docs-feature-grid">
+                        <a href="modules/cameras.html" class="docs-feature-card">
+                            <h3>Cameras</h3>
+                            <p>Multi-camera video with hardware-accelerated encoding. Supports CSI cameras (IMX296 global shutter) and USB webcams.</p>
+                        </a>
+                        <a href="modules/audio.html" class="docs-feature-card">
+                            <h3>Audio</h3>
+                            <p>Multi-channel USB microphone recording with real-time level monitoring and per-chunk timing.</p>
+                        </a>
+                        <a href="modules/eye-tracker.html" class="docs-feature-card">
+                            <h3>Eye Tracker</h3>
+                            <p>Pupil Labs Neon integration with gaze overlay, pupil diameter, and IMU data capture.</p>
+                        </a>
+                        <a href="modules/drt.html" class="docs-feature-card">
+                            <h3>DRT</h3>
+                            <p>Detection Response Task devices (wired &amp; wireless) for cognitive workload measurement.</p>
+                        </a>
+                        <a href="modules/vog.html" class="docs-feature-card">
+                            <h3>VOG</h3>
+                            <p>Visual Occlusion Glasses with experiment modes for vision research (Cycle, Peek, eBlindfold, Direct).</p>
+                        </a>
+                        <a href="modules/gps.html" class="docs-feature-card">
+                            <h3>GPS</h3>
+                            <p>Real-time location tracking with offline map support and comprehensive NMEA data parsing.</p>
+                        </a>
+                        <a href="modules/notes.html" class="docs-feature-card">
+                            <h3>Notes</h3>
+                            <p>Timestamped session annotations synchronized with all other data streams.</p>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="hardware">
+                    <h2>Supported Hardware</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>Connection</th>
+                                <th>Module</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IMX296 Global Shutter Camera</td>
+                                <td>CSI</td>
+                                <td><a href="modules/cameras.html">Cameras</a></td>
+                            </tr>
+                            <tr>
+                                <td>USB Webcams</td>
+                                <td>USB</td>
+                                <td><a href="modules/cameras.html">Cameras</a></td>
+                            </tr>
+                            <tr>
+                                <td>USB Microphones</td>
+                                <td>USB</td>
+                                <td><a href="modules/audio.html">Audio</a></td>
+                            </tr>
+                            <tr>
+                                <td>Pupil Labs Neon</td>
+                                <td>Network (WiFi/USB)</td>
+                                <td><a href="modules/eye-tracker.html">Eye Tracker</a></td>
+                            </tr>
+                            <tr>
+                                <td>Red Scientific DRT</td>
+                                <td>USB Serial</td>
+                                <td><a href="modules/drt.html">DRT</a></td>
+                            </tr>
+                            <tr>
+                                <td>Red Scientific wDRT</td>
+                                <td>XBee Wireless</td>
+                                <td><a href="modules/drt.html">DRT</a></td>
+                            </tr>
+                            <tr>
+                                <td>Red Scientific VOG</td>
+                                <td>USB Serial</td>
+                                <td><a href="modules/vog.html">VOG</a></td>
+                            </tr>
+                            <tr>
+                                <td>Red Scientific wVOG</td>
+                                <td>XBee Wireless</td>
+                                <td><a href="modules/vog.html">VOG</a></td>
+                            </tr>
+                            <tr>
+                                <td>OzzMaker BerryGPS</td>
+                                <td>UART</td>
+                                <td><a href="modules/gps.html">GPS</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="docs-callout docs-callout-hardware">
+                        <h3>Red Scientific Hardware</h3>
+                        <p>DRT and VOG devices are available from Red Scientific. See our <a href="../devices.html">Devices</a> page for specifications and purchasing information.</p>
+                    </div>
+                </section>
+
+                <section id="workflow">
+                    <h2>Workflow</h2>
+                    <p>Logger follows a simple session-based workflow:</p>
+
+                    <ol class="docs-steps">
+                        <li><strong>Select modules</strong> &mdash; Check the boxes for devices you want to use in the Modules menu</li>
+                        <li><strong>Start Session</strong> &mdash; Initialize all selected modules and create a session folder</li>
+                        <li><strong>Record</strong> &mdash; Begin a trial to capture synchronized data from all modules</li>
+                        <li><strong>Stop</strong> &mdash; End the trial (data saves automatically)</li>
+                        <li><strong>End Session</strong> &mdash; Finalize and close all modules</li>
+                    </ol>
+
+                    <p>You can record multiple trials per session. Each trial is saved with synchronized timestamps across all modules.</p>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+                    <p>Logger organizes data by session and module:</p>
+
+                    <pre class="docs-code"><code>session_YYYYMMDD_HHMMSS/
+├── Cameras/
+│   ├── video.avi
+│   └── frame_timing.csv
+├── Audio/
+│   ├── audio.wav
+│   └── chunk_timing.csv
+├── EyeTracker-Neon/
+│   ├── scene_video.mp4
+│   └── gaze_data.csv
+├── DRT/
+│   └── response_data.csv
+├── VOG/
+│   └── shutter_timing.csv
+├── GPS/
+│   └── location_data.csv
+└── Notes/
+    └── annotations.csv</code></pre>
+
+                    <p>For detailed information about each module's data format, see the individual module documentation or the <a href="data-output.html">Data Output Reference</a>.</p>
+                </section>
+
+                <section id="requirements">
+                    <h2>System Requirements</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Requirement</th>
+                                <th>Specification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Platform</td>
+                                <td>Raspberry Pi 5 (Pi 4 compatible)</td>
+                            </tr>
+                            <tr>
+                                <td>Operating System</td>
+                                <td>Raspberry Pi OS Bookworm</td>
+                            </tr>
+                            <tr>
+                                <td>Python</td>
+                                <td>3.11+</td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td>4GB minimum, 8GB recommended</td>
+                            </tr>
+                            <tr>
+                                <td>Storage</td>
+                                <td>USB 3.0 SSD recommended for video recording</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <span></span>
+                <a href="getting-started.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Getting Started</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        // Mobile docs menu toggle
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

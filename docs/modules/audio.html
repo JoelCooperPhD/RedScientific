@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Audio module - synchronized audio recording from USB microphones with real-time level monitoring.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html">Cameras</option>
+                <option value="audio.html" selected>Audio</option>
+                <option value="eye-tracker.html">Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html">VOG</option>
+                <option value="gps.html">GPS</option>
+                <option value="notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item active">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="gps.html" class="docs-nav-item">GPS</a>
+                    <a href="notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>Audio</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Audio Module</h1>
+                <p class="lead">Synchronized audio recording from USB microphones with real-time level monitoring and per-chunk timing data.</p>
+
+                <p>The Audio module records synchronized audio from USB microphones during experiment sessions. It supports multiple audio input devices and provides real-time level monitoring to help you verify audio is being captured correctly.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#recording">Recording Sessions</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Connect your USB microphone(s)</strong></li>
+                        <li><strong>Enable the Audio module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Wait for device assignment</strong> &mdash; Level meters appear when ready</li>
+                        <li><strong>Start a session</strong> &mdash; To begin recording</li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>Device Selection</h3>
+                    <p>Audio devices are assigned by the main logger. When a device is assigned, a level meter appears in the control panel.</p>
+
+                    <h3>Level Meters</h3>
+                    <p>Real-time audio level visualization shows whether your microphone is picking up sound:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Color</th>
+                                <th>Level</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Green</td>
+                                <td>Below -12 dB</td>
+                                <td>Normal levels</td>
+                            </tr>
+                            <tr>
+                                <td>Yellow</td>
+                                <td>-12 to -6 dB</td>
+                                <td>Moderate levels</td>
+                            </tr>
+                            <tr>
+                                <td>Red</td>
+                                <td>Above -6 dB</td>
+                                <td>High levels / clipping risk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>For best results, aim for levels that occasionally touch yellow during normal speech but rarely go red.</p>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Sessions</h2>
+
+                    <h3>Starting Recording</h3>
+                    <p>When you start a recording session:</p>
+                    <ul>
+                        <li>Audio streams are captured to WAV files</li>
+                        <li>Timing data is logged to companion CSV files</li>
+                        <li>Level meters continue to show real-time levels</li>
+                    </ul>
+
+                    <h3>During Recording</h3>
+                    <ul>
+                        <li>One WAV file is created per microphone</li>
+                        <li>Audio is recorded continuously until you stop</li>
+                        <li>Timing CSV tracks every audio chunk for synchronization</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/Audio/</code></pre>
+
+                    <h3>Files Generated</h3>
+                    <p>For each microphone, two files are created:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{timestamp}_AUDIO_trial{NNN}_MIC{id}_{name}.wav</code></td>
+                                <td>Audio recording</td>
+                            </tr>
+                            <tr>
+                                <td><code>{timestamp}_AUDIOTIMING_trial{NNN}_MIC{id}_{name}.csv</code></td>
+                                <td>Timing data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Example: <code>20251208_143022_AUDIO_trial001_MIC0_usb-microphone.wav</code></p>
+
+                    <h3>WAV Audio Format</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Format</td>
+                                <td>PCM (uncompressed)</td>
+                            </tr>
+                            <tr>
+                                <td>Bit Depth</td>
+                                <td>16-bit signed integer</td>
+                            </tr>
+                            <tr>
+                                <td>Channels</td>
+                                <td>Mono (1 channel)</td>
+                            </tr>
+                            <tr>
+                                <td>Sample Rate</td>
+                                <td>48,000 Hz default (8-192 kHz supported)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Multi-channel devices are recorded as mono using the first channel.</p>
+
+                    <h3>Timing CSV Columns</h3>
+                    <p>The timing CSV contains per-chunk timing data for precise synchronization with other modules.</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "Audio"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number (integer, 1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>write_time_unix</code></td>
+                                <td>System time when chunk was written (Unix seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>chunk_index</code></td>
+                                <td>Sequential chunk number (1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>write_time_monotonic</code></td>
+                                <td>High-precision monotonic clock (seconds, 9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>adc_timestamp</code></td>
+                                <td>Hardware ADC timestamp if available (seconds, 9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>frames</code></td>
+                                <td>Number of audio samples in this chunk</td>
+                            </tr>
+                            <tr>
+                                <td><code>total_frames</code></td>
+                                <td>Cumulative sample count since recording started</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>Audio,1,1702080123.456789,1,12.345678901,12.345678901,2048,2048</code></pre>
+
+                    <h3>Understanding the Timestamps</h3>
+                    <p>The timing CSV provides three independent time sources for maximum flexibility:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>write_time_unix</code></td>
+                                <td>Cross-module synchronization (matches other modules' Unix timestamps)</td>
+                            </tr>
+                            <tr>
+                                <td><code>write_time_monotonic</code></td>
+                                <td>Precise relative timing (never jumps or drifts)</td>
+                            </tr>
+                            <tr>
+                                <td><code>adc_timestamp</code></td>
+                                <td>Sample-accurate sync (most precise, but may be empty on some devices)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Calculating Audio Position</h3>
+                    <p>To find the exact time of any sample in the recording:</p>
+                    <ol>
+                        <li>Find the chunk containing that sample using <code>total_frames</code></li>
+                        <li>Use <code>write_time_monotonic</code> for that chunk as the base time</li>
+                        <li>Calculate offset: <code>(sample_position_in_chunk / sample_rate)</code></li>
+                    </ol>
+
+                    <p>To calculate recording duration:</p>
+                    <pre class="docs-code"><code>duration_seconds = total_frames / sample_rate</code></pre>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Default</th>
+                                <th>Range</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sample Rate</td>
+                                <td>48,000 Hz</td>
+                                <td>8-192 kHz</td>
+                                <td>Higher = better quality, larger files</td>
+                            </tr>
+                            <tr>
+                                <td>Channels</td>
+                                <td>Mono</td>
+                                <td>Fixed</td>
+                                <td>Multi-channel inputs use first channel</td>
+                            </tr>
+                            <tr>
+                                <td>Bit Depth</td>
+                                <td>16-bit</td>
+                                <td>Fixed</td>
+                                <td>Standard CD-quality audio</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Device not detected</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check USB connection</li>
+                                <li>Verify device is powered on</li>
+                                <li>Check system audio settings to confirm the device is recognized</li>
+                                <li>On Linux: Run <code>arecord -l</code> to list devices; ensure user is in 'audio' group</li>
+                                <li>On macOS: Check System Preferences &gt; Sound &gt; Input</li>
+                                <li>On Windows: Check Sound settings &gt; Recording devices</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>No audio in recording</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check input levels in the meter display - should show activity when you speak</li>
+                                <li>Verify microphone is not muted (check physical switches)</li>
+                                <li>Check system audio input settings</li>
+                                <li>Verify the correct device is selected as the input source</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Level meter shows no activity</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Speak into the microphone or tap it gently</li>
+                                <li>Check physical mute switches on the microphone</li>
+                                <li>Verify the correct device is assigned</li>
+                                <li>Restart the module</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Empty adc_timestamp in CSV</summary>
+                        <div class="docs-troubleshoot-content">
+                            <p>This is normal - not all audio devices provide hardware timestamps. Use <code>write_time_monotonic</code> for synchronization instead.</p>
+                        </div>
+                    </details>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="cameras.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Cameras</span>
+                </a>
+                <a href="eye-tracker.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Eye Tracker</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

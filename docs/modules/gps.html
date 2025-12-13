@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger GPS module - real-time location, speed, and heading data with offline map support.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html">Cameras</option>
+                <option value="audio.html">Audio</option>
+                <option value="eye-tracker.html">Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html">VOG</option>
+                <option value="gps.html" selected>GPS</option>
+                <option value="notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="gps.html" class="docs-nav-item active">GPS</a>
+                    <a href="notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>GPS</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>GPS Module</h1>
+                <p class="lead">Real-time location, speed, and heading data recording with offline map display support.</p>
+
+                <p>The GPS module records location, speed, and heading data from a GPS receiver during experiment sessions. It provides real-time position tracking and can display your route on an offline map.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#recording">Recording Sessions</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#fix-quality">GPS Fix Quality</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#offline-maps">Offline Maps</a></li>
+                        <li><a href="#hardware-setup">Hardware Setup</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Connect your GPS receiver</strong> &mdash; UART or USB-serial</li>
+                        <li><strong>Ensure GPS has clear sky view</strong> &mdash; For satellite lock</li>
+                        <li><strong>Enable the GPS module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Wait for device detection and satellite fix</strong></li>
+                        <li><strong>Start a session</strong> &mdash; To begin recording</li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>Map Display</h3>
+                    <p>Shows current position on an offline map:</p>
+                    <ul>
+                        <li>Blue dot indicates current location</li>
+                        <li>Trail shows recent path</li>
+                        <li>Map tiles are cached for offline use</li>
+                    </ul>
+
+                    <h3>Telemetry Panel</h3>
+                    <p>Real-time GPS data:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Latitude/Longitude</td>
+                                <td>Current coordinates in decimal degrees</td>
+                            </tr>
+                            <tr>
+                                <td>Speed</td>
+                                <td>Current velocity (km/h or mph)</td>
+                            </tr>
+                            <tr>
+                                <td>Heading</td>
+                                <td>Direction of travel (0-360 degrees)</td>
+                            </tr>
+                            <tr>
+                                <td>Altitude</td>
+                                <td>Height above sea level (meters)</td>
+                            </tr>
+                            <tr>
+                                <td>Satellites</td>
+                                <td>Number of satellites in view</td>
+                            </tr>
+                            <tr>
+                                <td>Fix Quality</td>
+                                <td>GPS fix status (No Fix, 2D, 3D, DGPS)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Sessions</h2>
+
+                    <h3>Starting Recording</h3>
+                    <p>When you start a recording session:</p>
+                    <ul>
+                        <li>GPS data logging begins immediately</li>
+                        <li>Position updates recorded at receiver rate (typically 1-10 Hz)</li>
+                        <li>Status shows connection and fix quality</li>
+                    </ul>
+
+                    <h3>During Recording</h3>
+                    <p>Each data point captures:</p>
+                    <ul>
+                        <li>Timestamp (UTC from GPS satellites)</li>
+                        <li>Latitude and longitude</li>
+                        <li>Speed and heading</li>
+                        <li>Altitude and fix quality</li>
+                        <li>Number of satellites and accuracy metrics</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/GPS/</code></pre>
+
+                    <h3>Files Generated</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{timestamp}_GPS_trial{NNN}.csv</code></td>
+                                <td>Parsed GPS data</td>
+                            </tr>
+                            <tr>
+                                <td><code>{timestamp}_NMEA_trial{NNN}.txt</code></td>
+                                <td>Raw NMEA sentences (optional)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Example: <code>20251208_143022_GPS_trial001.csv</code></p>
+
+                    <h3>GPS CSV Columns (21 fields)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "GPS"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number (integer, 1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp_utc</code></td>
+                                <td>GPS UTC time (ISO 8601 format)</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp_unix</code></td>
+                                <td>Unix timestamp (seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Host monotonic time (seconds, 9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>latitude</code></td>
+                                <td>Latitude (decimal degrees, + = North)</td>
+                            </tr>
+                            <tr>
+                                <td><code>longitude</code></td>
+                                <td>Longitude (decimal degrees, + = East)</td>
+                            </tr>
+                            <tr>
+                                <td><code>altitude_m</code></td>
+                                <td>Altitude above mean sea level (meters)</td>
+                            </tr>
+                            <tr>
+                                <td><code>geoid_separation_m</code></td>
+                                <td>Geoid separation (meters)</td>
+                            </tr>
+                            <tr>
+                                <td><code>speed_knots</code></td>
+                                <td>Speed over ground (knots)</td>
+                            </tr>
+                            <tr>
+                                <td><code>speed_kmh</code></td>
+                                <td>Speed over ground (km/h)</td>
+                            </tr>
+                            <tr>
+                                <td><code>speed_mph</code></td>
+                                <td>Speed over ground (mph)</td>
+                            </tr>
+                            <tr>
+                                <td><code>heading_true</code></td>
+                                <td>True heading (degrees 0-360)</td>
+                            </tr>
+                            <tr>
+                                <td><code>heading_magnetic</code></td>
+                                <td>Magnetic heading (degrees)</td>
+                            </tr>
+                            <tr>
+                                <td><code>fix_quality</code></td>
+                                <td>Fix type (0=None, 1=GPS, 2=DGPS, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td><code>fix_type</code></td>
+                                <td>Fix mode (1=None, 2=2D, 3=3D)</td>
+                            </tr>
+                            <tr>
+                                <td><code>satellites_used</code></td>
+                                <td>Satellites in position solution</td>
+                            </tr>
+                            <tr>
+                                <td><code>satellites_in_view</code></td>
+                                <td>Total satellites visible</td>
+                            </tr>
+                            <tr>
+                                <td><code>hdop</code></td>
+                                <td>Horizontal dilution of precision</td>
+                            </tr>
+                            <tr>
+                                <td><code>vdop</code></td>
+                                <td>Vertical dilution of precision</td>
+                            </tr>
+                            <tr>
+                                <td><code>pdop</code></td>
+                                <td>Position dilution of precision</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>GPS,1,2024-12-08T14:30:22.500Z,1733665822.500000,12345.678901234,-37.8136,144.9631,42.5,0.0,25.3,46.9,29.1,185.2,184.8,1,3,8,12,1.2,1.8,2.1</code></pre>
+
+                    <h3>Timing and Synchronization</h3>
+
+                    <h4>Timestamp Types</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Source</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>timestamp_utc</code></td>
+                                <td>GPS satellites</td>
+                                <td>Most accurate absolute time (atomic clock derived, &plusmn;100 ns)</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp_unix</code></td>
+                                <td>GPS time as Unix seconds</td>
+                                <td>Cross-system time reference</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Host monotonic clock</td>
+                                <td>Cross-module synchronization</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Cross-Module Synchronization</h4>
+                    <p>Use <code>record_time_mono</code> to correlate GPS with other modules:</p>
+                    <ul>
+                        <li>Camera <code>encode_time_mono</code></li>
+                        <li>Audio <code>write_time_monotonic</code></li>
+                        <li>Use <code>timestamp_unix</code> for absolute time reference</li>
+                    </ul>
+
+                    <h4>DOP Values (Dilution of Precision)</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>DOP</th>
+                                <th>Quality</th>
+                                <th>Position Accuracy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&lt; 1.0</td>
+                                <td>Ideal</td>
+                                <td>Sub-meter</td>
+                            </tr>
+                            <tr>
+                                <td>1-2</td>
+                                <td>Excellent</td>
+                                <td>~1-2 meters</td>
+                            </tr>
+                            <tr>
+                                <td>2-5</td>
+                                <td>Good</td>
+                                <td>~5-10 meters</td>
+                            </tr>
+                            <tr>
+                                <td>5-10</td>
+                                <td>Moderate</td>
+                                <td>~50 meters</td>
+                            </tr>
+                            <tr>
+                                <td>&gt; 10</td>
+                                <td>Poor</td>
+                                <td>Consider waiting for better fix</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="fix-quality">
+                    <h2>GPS Fix Quality</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Fix Type</th>
+                                <th>Satellites</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No Fix</td>
+                                <td>&lt; 3</td>
+                                <td>Insufficient satellites visible</td>
+                            </tr>
+                            <tr>
+                                <td>2D Fix</td>
+                                <td>3</td>
+                                <td>Position available (lat/lon) but no altitude</td>
+                            </tr>
+                            <tr>
+                                <td>3D Fix</td>
+                                <td>4+</td>
+                                <td>Full position including altitude</td>
+                            </tr>
+                            <tr>
+                                <td>DGPS</td>
+                                <td>4+</td>
+                                <td>Differential correction applied (sub-meter accuracy)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Default</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Serial Port</td>
+                                <td><code>/dev/serial0</code></td>
+                                <td>Raspberry Pi UART; may vary by connection</td>
+                            </tr>
+                            <tr>
+                                <td>Baud Rate</td>
+                                <td>9600</td>
+                                <td>Must match GPS receiver (common: 9600, 38400, 115200)</td>
+                            </tr>
+                            <tr>
+                                <td>Update Rate</td>
+                                <td>Receiver dependent</td>
+                                <td>Typically 1-10 Hz; higher = more detail but larger files</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="offline-maps">
+                    <h2>Offline Maps</h2>
+                    <p>The module uses pre-downloaded map tiles for offline display.</p>
+
+                    <h3>Download tiles for your area:</h3>
+                    <pre class="docs-code"><code>python -m rpi_logger.modules.GPS.download_offline_tiles</code></pre>
+
+                    <h3>Tile storage location:</h3>
+                    <pre class="docs-code"><code>~/.cache/rpi_logger/map_tiles/</code></pre>
+                </section>
+
+                <section id="hardware-setup">
+                    <h2>Hardware Setup</h2>
+
+                    <h3>Serial Port Configuration</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Typical Port</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Windows</td>
+                                <td>COM3, COM4, etc.</td>
+                                <td>Check Device Manager &gt; Ports</td>
+                            </tr>
+                            <tr>
+                                <td>macOS</td>
+                                <td>/dev/tty.usbserial-*</td>
+                                <td>Check System Information &gt; USB</td>
+                            </tr>
+                            <tr>
+                                <td>Linux</td>
+                                <td>/dev/ttyUSB0, /dev/ttyACM0</td>
+                                <td>Check <code>ls /dev/tty*</code></td>
+                            </tr>
+                            <tr>
+                                <td>Raspberry Pi</td>
+                                <td>/dev/serial0</td>
+                                <td>UART header or USB-serial adapter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Raspberry Pi UART Setup (BerryGPS)</h3>
+                    <p>For Raspberry Pi users with OzzMaker BerryGPS or similar UART GPS:</p>
+                    <ol>
+                        <li>Enable serial port in <code>raspi-config</code>:
+                            <ul>
+                                <li>Interfacing Options &gt; Serial</li>
+                                <li>Login shell: No</li>
+                                <li>Serial port: Yes</li>
+                            </ul>
+                        </li>
+                        <li>Reboot</li>
+                        <li>Verify <code>/dev/serial0</code> points to the hardware UART</li>
+                    </ol>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Pi 5 Only</h3>
+                        <p>Add <code>dtparam=uart0_console</code> to <code>/boot/firmware/config.txt</code></p>
+                    </div>
+
+                    <h3>Verifying GPS Connection</h3>
+                    <p>Test with a terminal program before launching:</p>
+                    <ul>
+                        <li>You should see NMEA sentences like <code>$GPRMC</code>, <code>$GPGGA</code>, etc.</li>
+                        <li>Data arrives at the configured baud rate (typically 9600)</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Device not detected</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check UART/serial or USB-serial connection</li>
+                                <li>Verify correct serial port in config</li>
+                                <li>Check baud rate matches GPS receiver (typically 9600)</li>
+                                <li>Test serial connection with a terminal program (e.g., PuTTY, screen, minicom)</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>No GPS fix</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Move to area with clear sky view</li>
+                                <li>Wait 1-2 minutes for cold start acquisition</li>
+                                <li>Check antenna connection if using external antenna</li>
+                                <li>Verify GPS receiver LED indicates searching</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Inaccurate position</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check number of satellites (need 4+ for 3D fix)</li>
+                                <li>Move away from buildings/obstructions</li>
+                                <li>Use external antenna for better reception</li>
+                                <li>Wait for DGPS correction if available</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Map not displaying</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Download offline tiles for your area</li>
+                                <li>Check internet connection for initial download</li>
+                                <li>Verify tile cache directory exists</li>
+                                <li>Check available disk space</li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="vog.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">VOG</span>
+                </a>
+                <a href="notes.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Notes</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

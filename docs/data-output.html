@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Output Reference | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Complete reference for Logger data output formats - file structures, CSV columns, and timing data for all modules.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo"><img src="../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html" class="active">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="index.html">Overview</option>
+            <option value="getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="modules/cameras.html">Cameras</option>
+                <option value="modules/audio.html">Audio</option>
+                <option value="modules/eye-tracker.html">Eye Tracker</option>
+                <option value="modules/drt.html">DRT</option>
+                <option value="modules/vog.html">VOG</option>
+                <option value="modules/gps.html">GPS</option>
+                <option value="modules/notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="data-output.html" selected>Data Output</option>
+                <option value="synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="index.html" class="docs-logo">
+                    <img src="../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="index.html" class="docs-nav-item">Overview</a>
+                <a href="getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="modules/cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="modules/audio.html" class="docs-nav-item">Audio</a>
+                    <a href="modules/eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="modules/drt.html" class="docs-nav-item">DRT</a>
+                    <a href="modules/vog.html" class="docs-nav-item">VOG</a>
+                    <a href="modules/gps.html" class="docs-nav-item">GPS</a>
+                    <a href="modules/notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="data-output.html" class="docs-nav-item active">Data Output</a>
+                    <a href="synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../software.html">Software</a>
+                <span>/</span>
+                <a href="index.html">Documentation</a>
+                <span>/</span>
+                <span>Data Output</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Data Output Reference</h1>
+                <p class="lead">Complete reference for Logger data output formats, file structures, and CSV column specifications.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#session-structure">Session Structure</a></li>
+                        <li><a href="#cameras">Cameras Output</a></li>
+                        <li><a href="#audio">Audio Output</a></li>
+                        <li><a href="#eye-tracker">Eye Tracker Output</a></li>
+                        <li><a href="#drt">DRT Output</a></li>
+                        <li><a href="#vog">VOG Output</a></li>
+                        <li><a href="#gps">GPS Output</a></li>
+                        <li><a href="#notes">Notes Output</a></li>
+                        <li><a href="#timestamp-formats">Timestamp Formats</a></li>
+                    </ul>
+                </nav>
+
+                <section id="session-structure">
+                    <h2>Session Structure</h2>
+                    <p>Logger organizes data hierarchically by session and module:</p>
+
+                    <pre class="docs-code"><code>session_YYYYMMDD_HHMMSS/
+├── Cameras/
+│   └── {camera_id}/
+│       ├── {prefix}_{camera_id}.avi
+│       ├── {prefix}_{camera_id}_timing.csv
+│       └── {prefix}_{camera_id}_metadata.csv
+├── Audio/
+│   ├── {timestamp}_AUDIO_trial{NNN}_MIC{id}_{name}.wav
+│   └── {timestamp}_AUDIOTIMING_trial{NNN}_MIC{id}_{name}.csv
+├── EyeTracker-Neon/
+│   ├── {prefix}_GAZEDATA_trial{NNN}.csv
+│   ├── {prefix}_SCENE_trial{NNN}.mp4
+│   ├── {prefix}_EVENT_trial{NNN}.csv
+│   ├── {prefix}_IMU_trial{NNN}.csv
+│   └── {prefix}_FRAME_trial{NNN}.csv
+├── DRT/
+│   └── {timestamp}_DRT_trial{NNN}_{device_id}.csv
+├── VOG/
+│   └── {timestamp}_VOG_trial{NNN}_{device_type}_{port}.csv
+├── GPS/
+│   └── {timestamp}_GPS_trial{NNN}.csv
+└── Notes/
+    └── {timestamp}_NOTES_trial{NNN}.csv</code></pre>
+
+                    <h3>File Naming Conventions</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Format</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{timestamp}</code></td>
+                                <td>YYYYMMDD_HHMMSS</td>
+                                <td>20251208_143022</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}</code></td>
+                                <td>trial_NNN</td>
+                                <td>trial_001</td>
+                            </tr>
+                            <tr>
+                                <td><code>{NNN}</code></td>
+                                <td>Zero-padded trial number</td>
+                                <td>001, 002, 003</td>
+                            </tr>
+                            <tr>
+                                <td><code>{camera_id}</code></td>
+                                <td>type_bus_device</td>
+                                <td>usb_0_001, picam_0</td>
+                            </tr>
+                            <tr>
+                                <td><code>{device_id}</code></td>
+                                <td>Module_dev_port</td>
+                                <td>DRT_dev_ttyacm0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="cameras">
+                    <h2>Cameras Output</h2>
+
+                    <h3>Video File</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Container</td>
+                                <td>AVI</td>
+                            </tr>
+                            <tr>
+                                <td>Codec</td>
+                                <td>MJPEG (Motion JPEG)</td>
+                            </tr>
+                            <tr>
+                                <td>Pixel Format</td>
+                                <td>YUV420P</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Timing CSV</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>int</td>
+                                <td>Trial number (may be empty)</td>
+                            </tr>
+                            <tr>
+                                <td><code>frame_index</code></td>
+                                <td>int</td>
+                                <td>1-based frame number</td>
+                            </tr>
+                            <tr>
+                                <td><code>capture_time_unix</code></td>
+                                <td>float</td>
+                                <td>Unix timestamp (6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>encode_time_mono</code></td>
+                                <td>float</td>
+                                <td>Monotonic time (9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>sensor_timestamp_ns</code></td>
+                                <td>int</td>
+                                <td>Hardware timestamp (CSI only)</td>
+                            </tr>
+                            <tr>
+                                <td><code>video_pts</code></td>
+                                <td>int</td>
+                                <td>Presentation timestamp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/cameras.html#data-output">Full Cameras documentation &rarr;</a></p>
+                </section>
+
+                <section id="audio">
+                    <h2>Audio Output</h2>
+
+                    <h3>WAV File</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Format</td>
+                                <td>PCM (uncompressed)</td>
+                            </tr>
+                            <tr>
+                                <td>Bit Depth</td>
+                                <td>16-bit signed integer</td>
+                            </tr>
+                            <tr>
+                                <td>Channels</td>
+                                <td>Mono</td>
+                            </tr>
+                            <tr>
+                                <td>Sample Rate</td>
+                                <td>48,000 Hz (default)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Timing CSV</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>string</td>
+                                <td>Always "Audio"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>int</td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>write_time_unix</code></td>
+                                <td>float</td>
+                                <td>Unix timestamp (6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>chunk_index</code></td>
+                                <td>int</td>
+                                <td>Sequential chunk number</td>
+                            </tr>
+                            <tr>
+                                <td><code>write_time_monotonic</code></td>
+                                <td>float</td>
+                                <td>Monotonic time (9 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>adc_timestamp</code></td>
+                                <td>float</td>
+                                <td>Hardware ADC timestamp</td>
+                            </tr>
+                            <tr>
+                                <td><code>frames</code></td>
+                                <td>int</td>
+                                <td>Samples in this chunk</td>
+                            </tr>
+                            <tr>
+                                <td><code>total_frames</code></td>
+                                <td>int</td>
+                                <td>Cumulative sample count</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/audio.html#data-output">Full Audio documentation &rarr;</a></p>
+                </section>
+
+                <section id="eye-tracker">
+                    <h2>Eye Tracker Output</h2>
+
+                    <h3>Scene Video</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Container</td>
+                                <td>MP4</td>
+                            </tr>
+                            <tr>
+                                <td>Codec</td>
+                                <td>H.264</td>
+                            </tr>
+                            <tr>
+                                <td>Resolution</td>
+                                <td>Configurable (default 1280x720)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>GAZEDATA CSV</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>string</td>
+                                <td>Always "EyeTracker-Neon"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>int</td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>gaze_timestamp</code></td>
+                                <td>float</td>
+                                <td>Device timestamp</td>
+                            </tr>
+                            <tr>
+                                <td><code>norm_pos_x</code></td>
+                                <td>float</td>
+                                <td>Normalized X (0-1)</td>
+                            </tr>
+                            <tr>
+                                <td><code>norm_pos_y</code></td>
+                                <td>float</td>
+                                <td>Normalized Y (0-1)</td>
+                            </tr>
+                            <tr>
+                                <td><code>confidence</code></td>
+                                <td>float</td>
+                                <td>Gaze confidence (0-1)</td>
+                            </tr>
+                            <tr>
+                                <td><code>worn</code></td>
+                                <td>bool</td>
+                                <td>Glasses worn status</td>
+                            </tr>
+                            <tr>
+                                <td><code>pupil_left_diam</code></td>
+                                <td>float</td>
+                                <td>Left pupil diameter (mm)</td>
+                            </tr>
+                            <tr>
+                                <td><code>pupil_right_diam</code></td>
+                                <td>float</td>
+                                <td>Right pupil diameter (mm)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_unix</code></td>
+                                <td>float</td>
+                                <td>System timestamp</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>float</td>
+                                <td>Monotonic time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/eye-tracker.html#data-output">Full Eye Tracker documentation &rarr;</a></p>
+                </section>
+
+                <section id="drt">
+                    <h2>DRT Output</h2>
+
+                    <h3>DRT CSV (7 columns)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Device ID</code></td>
+                                <td>string</td>
+                                <td>Device identifier</td>
+                            </tr>
+                            <tr>
+                                <td><code>Label</code></td>
+                                <td>string</td>
+                                <td>Trial label or "NA"</td>
+                            </tr>
+                            <tr>
+                                <td><code>Unix time in UTC</code></td>
+                                <td>int</td>
+                                <td>Host timestamp (seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Milliseconds Since Record</code></td>
+                                <td>int</td>
+                                <td>Device time (ms)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Trial Number</code></td>
+                                <td>int</td>
+                                <td>Sequential trial count</td>
+                            </tr>
+                            <tr>
+                                <td><code>Responses</code></td>
+                                <td>int</td>
+                                <td>Button press count</td>
+                            </tr>
+                            <tr>
+                                <td><code>Reaction Time</code></td>
+                                <td>int</td>
+                                <td>RT in ms (-1 = miss)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>wDRT CSV (9 columns)</h3>
+                    <p>Same as DRT plus:</p>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Battery Percent</code></td>
+                                <td>int</td>
+                                <td>Battery level (0-100%)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Device time in UTC</code></td>
+                                <td>int</td>
+                                <td>Device RTC timestamp</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/drt.html#data-output">Full DRT documentation &rarr;</a></p>
+                </section>
+
+                <section id="vog">
+                    <h2>VOG Output</h2>
+
+                    <h3>sVOG CSV (7 columns)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Device ID</code></td>
+                                <td>string</td>
+                                <td>Device identifier</td>
+                            </tr>
+                            <tr>
+                                <td><code>Label</code></td>
+                                <td>string</td>
+                                <td>Device port/label</td>
+                            </tr>
+                            <tr>
+                                <td><code>Unix time in UTC</code></td>
+                                <td>float</td>
+                                <td>Event timestamp (6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Milliseconds Since Record</code></td>
+                                <td>int</td>
+                                <td>Time since recording start</td>
+                            </tr>
+                            <tr>
+                                <td><code>Trial Number</code></td>
+                                <td>int</td>
+                                <td>Sequential trial count</td>
+                            </tr>
+                            <tr>
+                                <td><code>TSOT</code></td>
+                                <td>int</td>
+                                <td>Total Shutter Open Time (ms)</td>
+                            </tr>
+                            <tr>
+                                <td><code>TSCT</code></td>
+                                <td>int</td>
+                                <td>Total Shutter Close Time (ms)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>wVOG CSV (9 columns)</h3>
+                    <p>Same as sVOG plus:</p>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Lens</code></td>
+                                <td>string</td>
+                                <td>Lens state</td>
+                            </tr>
+                            <tr>
+                                <td><code>Battery Percent</code></td>
+                                <td>int</td>
+                                <td>Battery level (0-100%)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/vog.html#data-output">Full VOG documentation &rarr;</a></p>
+                </section>
+
+                <section id="gps">
+                    <h2>GPS Output</h2>
+
+                    <h3>GPS CSV (21 columns)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>string</td>
+                                <td>Always "GPS"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>int</td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp_utc</code></td>
+                                <td>string</td>
+                                <td>ISO 8601 UTC time</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp_unix</code></td>
+                                <td>float</td>
+                                <td>Unix timestamp</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>float</td>
+                                <td>Monotonic time</td>
+                            </tr>
+                            <tr>
+                                <td><code>latitude</code></td>
+                                <td>float</td>
+                                <td>Decimal degrees (+ = N)</td>
+                            </tr>
+                            <tr>
+                                <td><code>longitude</code></td>
+                                <td>float</td>
+                                <td>Decimal degrees (+ = E)</td>
+                            </tr>
+                            <tr>
+                                <td><code>altitude_m</code></td>
+                                <td>float</td>
+                                <td>Altitude (meters)</td>
+                            </tr>
+                            <tr>
+                                <td><code>speed_kmh</code></td>
+                                <td>float</td>
+                                <td>Speed (km/h)</td>
+                            </tr>
+                            <tr>
+                                <td><code>heading_true</code></td>
+                                <td>float</td>
+                                <td>True heading (degrees)</td>
+                            </tr>
+                            <tr>
+                                <td><code>fix_quality</code></td>
+                                <td>int</td>
+                                <td>Fix type (0=None, 1=GPS, 2=DGPS)</td>
+                            </tr>
+                            <tr>
+                                <td><code>satellites_used</code></td>
+                                <td>int</td>
+                                <td>Satellites in solution</td>
+                            </tr>
+                            <tr>
+                                <td><code>hdop</code></td>
+                                <td>float</td>
+                                <td>Horizontal DOP</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/gps.html#data-output">Full GPS documentation &rarr;</a></p>
+                </section>
+
+                <section id="notes">
+                    <h2>Notes Output</h2>
+
+                    <h3>Notes CSV (4 columns)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Note</code></td>
+                                <td>string</td>
+                                <td>Always "Note"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>int</td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>Content</code></td>
+                                <td>string</td>
+                                <td>Annotation text</td>
+                            </tr>
+                            <tr>
+                                <td><code>Timestamp</code></td>
+                                <td>float</td>
+                                <td>Unix timestamp (6 decimals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><a href="modules/notes.html#data-output">Full Notes documentation &rarr;</a></p>
+                </section>
+
+                <section id="timestamp-formats">
+                    <h2>Timestamp Formats</h2>
+
+                    <h3>Timestamp Types</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Format</th>
+                                <th>Precision</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Unix timestamp</td>
+                                <td>Seconds since 1970-01-01</td>
+                                <td>6 decimal places (microseconds)</td>
+                                <td>Cross-system reference</td>
+                            </tr>
+                            <tr>
+                                <td>Monotonic time</td>
+                                <td>Seconds since boot</td>
+                                <td>9 decimal places (nanoseconds)</td>
+                                <td>Cross-module sync</td>
+                            </tr>
+                            <tr>
+                                <td>ISO 8601</td>
+                                <td>YYYY-MM-DDTHH:MM:SS.sssZ</td>
+                                <td>Milliseconds</td>
+                                <td>Human-readable</td>
+                            </tr>
+                            <tr>
+                                <td>Hardware timestamp</td>
+                                <td>Nanoseconds</td>
+                                <td>Nanoseconds</td>
+                                <td>Device-specific timing</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Synchronization Tip</h3>
+                        <p>For best cross-module synchronization, use monotonic timestamps (<code>encode_time_mono</code>, <code>write_time_monotonic</code>, <code>record_time_mono</code>). See the <a href="synchronization.html">Synchronization Guide</a> for details.</p>
+                    </div>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="modules/notes.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Notes Module</span>
+                </a>
+                <a href="synchronization.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Synchronization</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronization Guide | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Guide to cross-module data synchronization in Logger - correlating video, audio, eye tracking, and behavioral data.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo"><img src="../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html" class="active">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="index.html">Overview</option>
+            <option value="getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="modules/cameras.html">Cameras</option>
+                <option value="modules/audio.html">Audio</option>
+                <option value="modules/eye-tracker.html">Eye Tracker</option>
+                <option value="modules/drt.html">DRT</option>
+                <option value="modules/vog.html">VOG</option>
+                <option value="modules/gps.html">GPS</option>
+                <option value="modules/notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="data-output.html">Data Output</option>
+                <option value="synchronization.html" selected>Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="index.html" class="docs-logo">
+                    <img src="../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="index.html" class="docs-nav-item">Overview</a>
+                <a href="getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="modules/cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="modules/audio.html" class="docs-nav-item">Audio</a>
+                    <a href="modules/eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="modules/drt.html" class="docs-nav-item">DRT</a>
+                    <a href="modules/vog.html" class="docs-nav-item">VOG</a>
+                    <a href="modules/gps.html" class="docs-nav-item">GPS</a>
+                    <a href="modules/notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="synchronization.html" class="docs-nav-item active">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../software.html">Software</a>
+                <span>/</span>
+                <a href="index.html">Documentation</a>
+                <span>/</span>
+                <span>Synchronization</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Synchronization Guide</h1>
+                <p class="lead">How to correlate data across video, audio, eye tracking, and behavioral modules with frame-level accuracy.</p>
+
+                <p>Logger records all modules with synchronized timestamps, enabling precise correlation of data across different sensors and devices. This guide explains how to use these timestamps for multi-modal data analysis.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#timestamp-types">Timestamp Types</a></li>
+                        <li><a href="#sync-columns">Synchronization Columns by Module</a></li>
+                        <li><a href="#common-tasks">Common Synchronization Tasks</a></li>
+                        <li><a href="#accuracy">Timing Accuracy</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
+                    </ul>
+                </nav>
+
+                <section id="timestamp-types">
+                    <h2>Timestamp Types</h2>
+
+                    <p>Logger uses three types of timestamps, each suited for different purposes:</p>
+
+                    <h3>1. Monotonic Time (Recommended for Cross-Module Sync)</h3>
+                    <p>A continuously increasing clock that starts at system boot. It <strong>never jumps</strong> due to NTP adjustments or timezone changes, making it ideal for precise relative timing.</p>
+                    <ul>
+                        <li><strong>Precision:</strong> 9 decimal places (nanosecond)</li>
+                        <li><strong>Format:</strong> <code>12345.678901234</code> (seconds since boot)</li>
+                        <li><strong>Columns:</strong> <code>encode_time_mono</code>, <code>write_time_monotonic</code>, <code>record_time_mono</code></li>
+                    </ul>
+
+                    <h3>2. Unix Timestamp (Wall Clock Time)</h3>
+                    <p>Seconds since January 1, 1970 UTC. Useful for absolute time reference and correlating with external systems.</p>
+                    <ul>
+                        <li><strong>Precision:</strong> 6 decimal places (microsecond)</li>
+                        <li><strong>Format:</strong> <code>1733649120.123456</code></li>
+                        <li><strong>Columns:</strong> <code>capture_time_unix</code>, <code>write_time_unix</code>, <code>record_time_unix</code>, <code>Unix time in UTC</code></li>
+                    </ul>
+
+                    <div class="docs-callout docs-callout-warning">
+                        <h3>Caution with Unix Timestamps</h3>
+                        <p>Unix timestamps can jump forward or backward if the system clock is adjusted (NTP sync, manual changes). For frame-accurate synchronization, prefer monotonic time.</p>
+                    </div>
+
+                    <h3>3. Hardware/Device Timestamps</h3>
+                    <p>Some devices provide their own hardware timestamps with higher precision or different time bases:</p>
+                    <ul>
+                        <li><strong>CSI Cameras:</strong> <code>sensor_timestamp_ns</code> (nanoseconds from camera hardware)</li>
+                        <li><strong>Audio:</strong> <code>adc_timestamp</code> (from audio hardware, if available)</li>
+                        <li><strong>GPS:</strong> <code>timestamp_utc</code> (atomic clock derived, highest absolute accuracy)</li>
+                        <li><strong>DRT/VOG:</strong> <code>Milliseconds Since Record</code> (device internal time)</li>
+                    </ul>
+                </section>
+
+                <section id="sync-columns">
+                    <h2>Synchronization Columns by Module</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Monotonic Column</th>
+                                <th>Unix Column</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cameras</td>
+                                <td><code>encode_time_mono</code></td>
+                                <td><code>capture_time_unix</code></td>
+                                <td>Use <code>frame_index</code> to seek video</td>
+                            </tr>
+                            <tr>
+                                <td>Audio</td>
+                                <td><code>write_time_monotonic</code></td>
+                                <td><code>write_time_unix</code></td>
+                                <td>Use <code>total_frames</code> for sample position</td>
+                            </tr>
+                            <tr>
+                                <td>Eye Tracker</td>
+                                <td><code>record_time_mono</code></td>
+                                <td><code>record_time_unix</code></td>
+                                <td>High-frequency gaze data</td>
+                            </tr>
+                            <tr>
+                                <td>DRT</td>
+                                <td>&mdash;</td>
+                                <td><code>Unix time in UTC</code></td>
+                                <td>Event-based (one row per trial)</td>
+                            </tr>
+                            <tr>
+                                <td>VOG</td>
+                                <td>&mdash;</td>
+                                <td><code>Unix time in UTC</code></td>
+                                <td>Event-based (lens state changes)</td>
+                            </tr>
+                            <tr>
+                                <td>GPS</td>
+                                <td><code>record_time_mono</code></td>
+                                <td><code>timestamp_unix</code></td>
+                                <td>Highest absolute time accuracy</td>
+                            </tr>
+                            <tr>
+                                <td>Notes</td>
+                                <td>&mdash;</td>
+                                <td><code>Timestamp</code></td>
+                                <td>Manual annotations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="common-tasks">
+                    <h2>Common Synchronization Tasks</h2>
+
+                    <h3>Find Video Frame at a Given Time</h3>
+                    <p>To find which video frame corresponds to a specific timestamp:</p>
+                    <ol>
+                        <li>Load the camera timing CSV</li>
+                        <li>Search for the row with <code>capture_time_unix</code> closest to your target time</li>
+                        <li>Use <code>frame_index</code> to seek to that frame in the video file</li>
+                    </ol>
+
+                    <pre class="docs-code"><code># Python example
+import pandas as pd
+
+timing = pd.read_csv('trial_001_usb_0_001_timing.csv')
+target_time = 1733649123.456789
+
+# Find closest frame
+idx = (timing['capture_time_unix'] - target_time).abs().idxmin()
+frame_number = timing.loc[idx, 'frame_index']
+print(f"Frame {frame_number} at time {timing.loc[idx, 'capture_time_unix']}")</code></pre>
+
+                    <h3>Find Audio Sample at a Given Time</h3>
+                    <p>To find which audio sample corresponds to a timestamp:</p>
+                    <ol>
+                        <li>Load the audio timing CSV</li>
+                        <li>Find the chunk containing your target time</li>
+                        <li>Calculate the sample offset within that chunk</li>
+                    </ol>
+
+                    <pre class="docs-code"><code># Python example
+timing = pd.read_csv('20251208_143022_AUDIOTIMING_trial001_MIC0.csv')
+target_time = 1733649123.456789
+sample_rate = 48000
+
+# Find chunk containing target time
+chunk = timing[timing['write_time_unix'] <= target_time].iloc[-1]
+time_offset = target_time - chunk['write_time_unix']
+sample_in_chunk = int(time_offset * sample_rate)
+total_sample = chunk['total_frames'] - chunk['frames'] + sample_in_chunk</code></pre>
+
+                    <h3>Find Gaze Data at a Video Frame</h3>
+                    <p>To get gaze data corresponding to a specific video frame:</p>
+                    <ol>
+                        <li>Get the frame's <code>encode_time_mono</code> from camera timing CSV</li>
+                        <li>Find gaze samples with matching <code>record_time_mono</code></li>
+                    </ol>
+
+                    <pre class="docs-code"><code># Python example
+camera_timing = pd.read_csv('trial_001_usb_0_001_timing.csv')
+gaze_data = pd.read_csv('20251208_GAZEDATA_trial001.csv')
+
+frame_time = camera_timing.loc[100, 'encode_time_mono']  # Frame 100
+
+# Find gaze samples within 33ms of frame (for 30fps video)
+tolerance = 0.033
+gaze_at_frame = gaze_data[
+    (gaze_data['record_time_mono'] >= frame_time - tolerance) &
+    (gaze_data['record_time_mono'] < frame_time + tolerance)
+]</code></pre>
+
+                    <h3>Find DRT Trial at a Video Frame</h3>
+                    <p>To find which DRT trial was occurring during a video frame:</p>
+
+                    <pre class="docs-code"><code># Python example
+camera_timing = pd.read_csv('trial_001_usb_0_001_timing.csv')
+drt_data = pd.read_csv('20251208_DRT_trial001.csv')
+
+frame_time_unix = camera_timing.loc[100, 'capture_time_unix']
+
+# Find DRT trial closest to frame time
+drt_data['time_diff'] = abs(drt_data['Unix time in UTC'] - frame_time_unix)
+closest_trial = drt_data.loc[drt_data['time_diff'].idxmin()]</code></pre>
+
+                    <h3>Correlate Note with Video Frame</h3>
+                    <pre class="docs-code"><code># Python example
+notes = pd.read_csv('20251208_NOTES_trial001.csv')
+camera_timing = pd.read_csv('trial_001_usb_0_001_timing.csv')
+
+note_time = notes.loc[0, 'Timestamp']
+
+# Find frame at note time
+idx = (camera_timing['capture_time_unix'] - note_time).abs().idxmin()
+frame_at_note = camera_timing.loc[idx, 'frame_index']
+print(f"Note '{notes.loc[0, 'Content']}' at frame {frame_at_note}")</code></pre>
+                </section>
+
+                <section id="accuracy">
+                    <h2>Timing Accuracy</h2>
+
+                    <h3>Synchronization Accuracy by Module</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Typical Accuracy</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cameras (CSI)</td>
+                                <td>&lt; 1 ms</td>
+                                <td>Hardware timestamps from sensor</td>
+                            </tr>
+                            <tr>
+                                <td>Cameras (USB)</td>
+                                <td>~10-30 ms</td>
+                                <td>Software timestamps, USB latency varies</td>
+                            </tr>
+                            <tr>
+                                <td>Audio</td>
+                                <td>&lt; 1 ms</td>
+                                <td>Hardware ADC timestamps when available</td>
+                            </tr>
+                            <tr>
+                                <td>Eye Tracker</td>
+                                <td>~5-10 ms</td>
+                                <td>Network latency from Neon device</td>
+                            </tr>
+                            <tr>
+                                <td>DRT/VOG</td>
+                                <td>~1-5 ms</td>
+                                <td>USB serial latency + firmware timing</td>
+                            </tr>
+                            <tr>
+                                <td>GPS</td>
+                                <td>&lt; 100 ns (absolute)</td>
+                                <td>Atomic clock derived, best for absolute time</td>
+                            </tr>
+                            <tr>
+                                <td>Notes</td>
+                                <td>~10-50 ms</td>
+                                <td>Human input delay + software latency</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Frame-Level Synchronization</h3>
+                    <p>At 30 fps video, one frame = ~33 ms. Logger achieves frame-level synchronization across all modules, meaning:</p>
+                    <ul>
+                        <li>Any two data points can be correlated to within one video frame</li>
+                        <li>Typical cross-module accuracy: &lt; 30 ms</li>
+                        <li>Best case (CSI camera + audio with hardware timestamps): &lt; 1 ms</li>
+                    </ul>
+                </section>
+
+                <section id="best-practices">
+                    <h2>Best Practices</h2>
+
+                    <h3>1. Use Monotonic Time for Cross-Module Sync</h3>
+                    <p>Monotonic timestamps are immune to clock adjustments and provide the most reliable relative timing between modules.</p>
+
+                    <h3>2. Use Unix Time for Absolute Reference</h3>
+                    <p>When you need to know the actual wall-clock time of an event, or correlate with external systems, use Unix timestamps.</p>
+
+                    <h3>3. Account for Sample Rate Differences</h3>
+                    <p>Different modules sample at different rates:</p>
+                    <ul>
+                        <li>Video: 30-60 Hz</li>
+                        <li>Audio: 48,000 Hz</li>
+                        <li>Gaze: 30-200 Hz</li>
+                        <li>DRT: Event-based (~0.2-0.3 Hz)</li>
+                        <li>GPS: 1-10 Hz</li>
+                    </ul>
+                    <p>When correlating, interpolate or find nearest neighbor as appropriate.</p>
+
+                    <h3>4. Verify Timing with Known Events</h3>
+                    <p>Use the Notes module to mark known events during recording, then verify these events appear correctly synchronized across video, audio, and other data streams.</p>
+
+                    <h3>5. Use GPS for Absolute Time Calibration</h3>
+                    <p>If you need highly accurate absolute time, use the GPS module's <code>timestamp_utc</code> as a reference. GPS time is derived from atomic clocks and accurate to within 100 nanoseconds.</p>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="data-output.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Data Output</span>
+                </a>
+                <a href="legacy/rs-logger-windows.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">RS Logger (Windows)</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

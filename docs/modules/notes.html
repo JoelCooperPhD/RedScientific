@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Notes module - timestamped session annotations synchronized with all other data streams.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html">Cameras</option>
+                <option value="audio.html">Audio</option>
+                <option value="eye-tracker.html">Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html">VOG</option>
+                <option value="gps.html">GPS</option>
+                <option value="notes.html" selected>Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="gps.html" class="docs-nav-item">GPS</a>
+                    <a href="notes.html" class="docs-nav-item active">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>Notes</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Notes Module</h1>
+                <p class="lead">Timestamped session annotations synchronized with all other data streams.</p>
+
+                <p>The Notes module allows you to add timestamped annotations during experiment sessions. Notes are synchronized with other data streams and saved to a CSV file for later analysis. Use notes to mark events, observations, or participant comments during your experiments.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#recording">Recording Notes</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Enable the Notes module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Start a session</strong> &mdash; From the main logger</li>
+                        <li><strong>Type your note</strong> &mdash; In the text field</li>
+                        <li><strong>Press Enter or click "Post"</strong> &mdash; To save</li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>History Panel</h3>
+                    <p>Displays previously entered notes with:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Element</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Timestamp</td>
+                                <td>When the note was created (blue text)</td>
+                            </tr>
+                            <tr>
+                                <td>Elapsed Time</td>
+                                <td>Time since recording started (green text)</td>
+                            </tr>
+                            <tr>
+                                <td>Module Tags</td>
+                                <td>Which modules were recording (purple tags)</td>
+                            </tr>
+                            <tr>
+                                <td>Note Content</td>
+                                <td>Your annotation text</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>New Note Field</h3>
+                    <ul>
+                        <li>Type your annotation text in the input field</li>
+                        <li>Press <strong>Enter</strong> to submit (Shift+Enter for newline)</li>
+                        <li>Click <strong>"Post"</strong> button to save</li>
+                    </ul>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Notes</h2>
+
+                    <h3>Adding a Note</h3>
+                    <ol>
+                        <li>Type your observation in the text field</li>
+                        <li>Press Enter or click "Post"</li>
+                        <li>Note appears in history with timestamp</li>
+                        <li>Data is immediately saved to file</li>
+                    </ol>
+
+                    <h3>Note Content Tips</h3>
+                    <ul>
+                        <li>Keep notes brief and descriptive</li>
+                        <li>Use consistent terminology across sessions</li>
+                        <li>Include relevant trial or condition info</li>
+                        <li>Note unexpected events or errors</li>
+                    </ul>
+
+                    <h3>Auto-Recording</h3>
+                    <p>Notes recording starts automatically when:</p>
+                    <ul>
+                        <li>A session is active</li>
+                        <li>You type and submit a note</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/Notes/{timestamp}_NOTES_trial{NNN}.csv</code></pre>
+                    <p>Example: <code>20251208_143022_NOTES_trial001.csv</code></p>
+
+                    <h3>CSV Columns (4 fields)</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Note</code></td>
+                                <td>Row identifier (always "Note")</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number (integer, 1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Content</code></td>
+                                <td>Your annotation text (string)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Timestamp</code></td>
+                                <td>Unix timestamp (seconds with 6 decimal places)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Example row:</strong></p>
+                    <pre class="docs-code"><code>Note,1,Participant started task,1733649123.456789</code></pre>
+
+                    <h3>Timing and Synchronization</h3>
+
+                    <h4>Timestamp Precision</h4>
+                    <ul>
+                        <li>Unix timestamp with microsecond precision (6 decimal places)</li>
+                        <li>Recorded at the moment you press Enter/Post</li>
+                    </ul>
+
+                    <h4>Cross-Module Synchronization</h4>
+                    <p>Use the Timestamp column to correlate notes with:</p>
+                    <ul>
+                        <li>Video frames (via camera <code>capture_time_unix</code>)</li>
+                        <li>Audio samples (via audio <code>write_time_unix</code>)</li>
+                        <li>DRT trials (via <code>Unix time in UTC</code>)</li>
+                        <li>Eye tracking data (via <code>record_time_unix</code>)</li>
+                        <li>GPS position (via <code>timestamp_unix</code>)</li>
+                    </ul>
+
+                    <h4>Example: Finding video frame for a note</h4>
+                    <ol>
+                        <li>Read note Timestamp (e.g., <code>1733649123.456789</code>)</li>
+                        <li>Search camera timing CSV for nearest <code>capture_time_unix</code></li>
+                        <li>Use <code>frame_index</code> to locate frame in video file</li>
+                    </ol>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Description</th>
+                                <th>Default</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>History Limit</td>
+                                <td>Maximum notes displayed in history panel</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Auto-Start</td>
+                                <td>Automatically begin recording when session starts</td>
+                                <td>Off</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="best-practices">
+                    <h2>Best Practices</h2>
+
+                    <h3>During Experiments</h3>
+                    <ul>
+                        <li>Note start/end of conditions or trials</li>
+                        <li>Record participant comments verbatim</li>
+                        <li>Mark equipment issues or interruptions</li>
+                        <li>Document environmental changes</li>
+                    </ul>
+
+                    <h3>For Analysis</h3>
+                    <ul>
+                        <li>Use consistent note formats across sessions</li>
+                        <li>Include trial/condition identifiers when relevant</li>
+                        <li>Timestamp critical events as they happen</li>
+                        <li>Note anything unusual for later reference</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Notes not saving</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Verify a session is active</li>
+                                <li>Check the session directory is writable</li>
+                                <li>Start session from main logger first</li>
+                                <li>Review module logs for errors</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>History not updating</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Notes appear after pressing Enter/Post</li>
+                                <li>Check that note field is not empty</li>
+                                <li>Scroll to bottom of history panel</li>
+                                <li>Restart module if display freezes</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>"Session required" message</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Start a session from the main RPi Logger first</li>
+                                <li>Use "Start Session" button before adding notes</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Lost notes after crash</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ul>
+                                <li>Notes are saved immediately to disk</li>
+                                <li>Check session directory for CSV file</li>
+                                <li>Partial data should be recoverable</li>
+                            </ul>
+                        </div>
+                    </details>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="gps.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">GPS</span>
+                </a>
+                <a href="../data-output.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Data Output</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

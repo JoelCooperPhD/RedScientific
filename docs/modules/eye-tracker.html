@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Tracker Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Eye Tracker module - Pupil Labs Neon integration with gaze data, pupil diameter, and scene video capture.">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html" class="active">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="../index.html">Overview</option>
+            <option value="../getting-started.html">Getting Started</option>
+            <optgroup label="Modules">
+                <option value="cameras.html">Cameras</option>
+                <option value="audio.html">Audio</option>
+                <option value="eye-tracker.html" selected>Eye Tracker</option>
+                <option value="drt.html">DRT</option>
+                <option value="vog.html">VOG</option>
+                <option value="gps.html">GPS</option>
+                <option value="notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="../data-output.html">Data Output</option>
+                <option value="../synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="../index.html" class="docs-logo">
+                    <img src="../../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="../index.html" class="docs-nav-item">Overview</a>
+                <a href="../getting-started.html" class="docs-nav-item">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="audio.html" class="docs-nav-item">Audio</a>
+                    <a href="eye-tracker.html" class="docs-nav-item active">Eye Tracker</a>
+                    <a href="drt.html" class="docs-nav-item">DRT</a>
+                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="gps.html" class="docs-nav-item">GPS</a>
+                    <a href="notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="../data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="../synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="../legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../../software.html">Software</a>
+                <span>/</span>
+                <a href="../index.html">Documentation</a>
+                <span>/</span>
+                <span>Eye Tracker</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Eye Tracker Module</h1>
+                <p class="lead">Pupil Labs Neon integration with gaze data, pupil diameter, IMU data, and scene video capture.</p>
+
+                <p>The EyeTracker-Neon module captures gaze data and scene video from Pupil Labs Neon eye tracking glasses. It records where participants are looking in real-time, synchronized with other data streams for multi-modal research.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#user-interface">User Interface</a></li>
+                        <li><a href="#hardware">Hardware Specifications</a></li>
+                        <li><a href="#recording">Recording Sessions</a></li>
+                        <li><a href="#data-output">Data Output</a></li>
+                        <li><a href="#data-interpretation">Data Interpretation</a></li>
+                        <li><a href="#calibration">Calibration</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol class="docs-steps">
+                        <li><strong>Power on your Pupil Labs Neon glasses</strong></li>
+                        <li><strong>Connect via WiFi</strong> &mdash; Same network as host, or USB tethering</li>
+                        <li><strong>Enable the EyeTracker-Neon module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Wait for device connection</strong> &mdash; Status shows "Connected"</li>
+                        <li><strong>Calibrate if needed</strong> &mdash; Using the Neon Companion app</li>
+                        <li><strong>Start a session</strong> &mdash; To begin recording</li>
+                    </ol>
+                </section>
+
+                <section id="user-interface">
+                    <h2>User Interface</h2>
+
+                    <h3>Preview Display</h3>
+                    <p>Shows the scene camera feed with gaze overlay:</p>
+                    <ul>
+                        <li>Red circle indicates current gaze position</li>
+                        <li>Scene video shows participant's view</li>
+                    </ul>
+
+                    <h3>Device Status Panel</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Device</td>
+                                <td>Connected device name</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>Connection state (Connected/Disconnected)</td>
+                            </tr>
+                            <tr>
+                                <td>Recording</td>
+                                <td>Current recording state (Active/Idle)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Controls</h3>
+                    <ul>
+                        <li><strong>Configure</strong> &mdash; Open device settings dialog</li>
+                    </ul>
+                </section>
+
+                <section id="hardware">
+                    <h2>Hardware Specifications</h2>
+                    <p>The Neon device streams at <strong>fixed specifications</strong> that cannot be changed via API:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Stream</th>
+                                <th>Resolution</th>
+                                <th>Frame Rate</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Scene Camera</td>
+                                <td>1600x1200 px</td>
+                                <td>30 Hz</td>
+                                <td>103&deg; x 77&deg; field of view</td>
+                            </tr>
+                            <tr>
+                                <td>Eye Cameras</td>
+                                <td>384x192 px (192x192 per eye)</td>
+                                <td>200 Hz</td>
+                                <td>Infrared</td>
+                            </tr>
+                            <tr>
+                                <td>Gaze Data</td>
+                                <td>N/A</td>
+                                <td>Up to 200 Hz</td>
+                                <td>Varies by companion phone</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Our module receives these streams and can downsample/resize locally for smaller file sizes.</p>
+                </section>
+
+                <section id="recording">
+                    <h2>Recording Sessions</h2>
+
+                    <h3>Starting Recording</h3>
+                    <p>When you start a recording session:</p>
+                    <ul>
+                        <li>Gaze data recording begins</li>
+                        <li>Scene video capture starts</li>
+                        <li>Optional: Eye camera video, IMU, audio, and events</li>
+                    </ul>
+
+                    <h3>During Recording</h3>
+                    <p>Each sample captures:</p>
+                    <ul>
+                        <li>Gaze coordinates (x, y) in scene camera view</li>
+                        <li>Pupil diameter for each eye</li>
+                        <li>Confidence values for gaze estimation</li>
+                        <li>Scene video with embedded timestamps</li>
+                    </ul>
+                </section>
+
+                <section id="data-output">
+                    <h2>Data Output</h2>
+
+                    <h3>File Location</h3>
+                    <pre class="docs-code"><code>{session_dir}/EyeTracker-Neon/</code></pre>
+
+                    <h3>Files Generated</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>File</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>{prefix}_GAZEDATA_trial{NNN}.csv</code></td>
+                                <td>Extended gaze data with pupil diameter</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_SCENE_trial{NNN}.mp4</code></td>
+                                <td>Scene video (participant's view)</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_EVENT_trial{NNN}.csv</code></td>
+                                <td>Eye events (fixations, saccades, blinks)</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_IMU_trial{NNN}.csv</code></td>
+                                <td>Head motion (accelerometer, gyroscope)</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_FRAME_trial{NNN}.csv</code></td>
+                                <td>Video frame timing</td>
+                            </tr>
+                            <tr>
+                                <td><code>{prefix}_AUDIO_trial{NNN}.wav</code></td>
+                                <td>Scene microphone audio (optional)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Scene Video Format</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Container</td>
+                                <td>MP4</td>
+                            </tr>
+                            <tr>
+                                <td>Codec</td>
+                                <td>H.264</td>
+                            </tr>
+                            <tr>
+                                <td>Resolution</td>
+                                <td>Configurable (default 1280x720, downsampled from 1600x1200)</td>
+                            </tr>
+                            <tr>
+                                <td>Frame Rate</td>
+                                <td>Configurable (default 10 fps, downsampled from 30 Hz)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>GAZEDATA CSV Columns</h3>
+                    <p>Extended gaze data including pupil measurements:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "EyeTracker-Neon"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number (integer, 1-based)</td>
+                            </tr>
+                            <tr>
+                                <td><code>gaze_timestamp</code></td>
+                                <td>Device timestamp (Unix seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>norm_pos_x</code></td>
+                                <td>Normalized X position (0-1, where 0=left, 1=right)</td>
+                            </tr>
+                            <tr>
+                                <td><code>norm_pos_y</code></td>
+                                <td>Normalized Y position (0-1, where 0=top, 1=bottom)</td>
+                            </tr>
+                            <tr>
+                                <td><code>confidence</code></td>
+                                <td>Gaze confidence (0-1, higher = more reliable)</td>
+                            </tr>
+                            <tr>
+                                <td><code>worn</code></td>
+                                <td>Glasses worn status (True/False)</td>
+                            </tr>
+                            <tr>
+                                <td><code>pupil_left_diam</code></td>
+                                <td>Left pupil diameter (mm)</td>
+                            </tr>
+                            <tr>
+                                <td><code>pupil_right_diam</code></td>
+                                <td>Right pupil diameter (mm)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_unix</code></td>
+                                <td>System timestamp (Unix seconds, 6 decimals)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Monotonic time (seconds, 9 decimals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>EVENT CSV Columns</h3>
+                    <p>Eye events with variable fields based on event type:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "EyeTracker-Neon"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>event_type</code></td>
+                                <td>fixation, blink, or saccade</td>
+                            </tr>
+                            <tr>
+                                <td><code>start_timestamp</code></td>
+                                <td>Event start (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>end_timestamp</code></td>
+                                <td>Event end (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>duration_ms</code></td>
+                                <td>Event duration (milliseconds)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Additional fields for specific event types:</p>
+                    <ul>
+                        <li><strong>Fixations:</strong> centroid_x, centroid_y, dispersion</li>
+                        <li><strong>Blinks:</strong> left_closed, right_closed</li>
+                        <li><strong>Saccades:</strong> amplitude, direction</li>
+                    </ul>
+
+                    <h3>IMU CSV Columns</h3>
+                    <p>Head motion data:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "EyeTracker-Neon"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>timestamp</code></td>
+                                <td>Device timestamp (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>accel_x, accel_y, accel_z</code></td>
+                                <td>Accelerometer (m/s&sup2;)</td>
+                            </tr>
+                            <tr>
+                                <td><code>gyro_x, gyro_y, gyro_z</code></td>
+                                <td>Gyroscope (rad/s)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Monotonic time (seconds, 9 decimals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>FRAME CSV Columns</h3>
+                    <p>Video frame timing for synchronization:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Column</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Module</code></td>
+                                <td>Always "EyeTracker-Neon"</td>
+                            </tr>
+                            <tr>
+                                <td><code>trial</code></td>
+                                <td>Trial number</td>
+                            </tr>
+                            <tr>
+                                <td><code>frame_index</code></td>
+                                <td>1-based frame number in video</td>
+                            </tr>
+                            <tr>
+                                <td><code>capture_timestamp</code></td>
+                                <td>Device capture time (Unix seconds)</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_unix</code></td>
+                                <td>System time when recorded</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Monotonic time (seconds, 9 decimals)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Timing and Synchronization</h3>
+
+                    <h4>Timestamp Types</h4>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Source</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>gaze_timestamp</code></td>
+                                <td>Pupil Labs device clock</td>
+                                <td>Primary gaze timing</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_unix</code></td>
+                                <td>Host system wall clock</td>
+                                <td>Cross-system time reference</td>
+                            </tr>
+                            <tr>
+                                <td><code>record_time_mono</code></td>
+                                <td>Host monotonic clock</td>
+                                <td>Cross-module synchronization (best for this)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4>Cross-Module Synchronization</h4>
+                    <p>Use <code>record_time_mono</code> for precise cross-module sync with:</p>
+                    <ul>
+                        <li>Camera <code>encode_time_mono</code></li>
+                        <li>Audio <code>write_time_monotonic</code></li>
+                        <li>DRT <code>Unix time in UTC</code></li>
+                    </ul>
+
+                    <h4>Video-Gaze Alignment</h4>
+                    <p>Use FRAME CSV to correlate video frames with gaze data:</p>
+                    <ol>
+                        <li>Find <code>frame_index</code> for desired video position</li>
+                        <li>Match <code>capture_timestamp</code> to <code>gaze_timestamp</code> in GAZEDATA</li>
+                        <li>Gaze samples between frames belong to that time period</li>
+                    </ol>
+                </section>
+
+                <section id="data-interpretation">
+                    <h2>Data Interpretation</h2>
+
+                    <h3>Gaze Position (norm_pos_x, norm_pos_y)</h3>
+                    <p>Normalized coordinates (0-1) in scene camera view:</p>
+                    <ul>
+                        <li>(0, 0) = top-left corner</li>
+                        <li>(1, 1) = bottom-right corner</li>
+                    </ul>
+
+                    <p>To convert to pixel coordinates:</p>
+                    <pre class="docs-code"><code>pixel_x = norm_pos_x * scene_width
+pixel_y = norm_pos_y * scene_height</code></pre>
+
+                    <h3>Confidence</h3>
+                    <p>Quality of gaze estimate (0-1). Higher values indicate more reliable tracking. Low confidence may occur when:</p>
+                    <ul>
+                        <li>Eyes are partially closed</li>
+                        <li>Glasses are slipping</li>
+                        <li>Infrared reflections interfere</li>
+                    </ul>
+
+                    <h3>Pupil Diameter</h3>
+                    <p>Measured in millimeters. Changes in pupil size can reflect:</p>
+                    <ul>
+                        <li>Cognitive load (larger during mental effort)</li>
+                        <li>Emotional response</li>
+                        <li>Lighting conditions (smaller in bright light)</li>
+                    </ul>
+                </section>
+
+                <section id="calibration">
+                    <h2>Calibration</h2>
+                    <p>For accurate gaze data, calibrate before each session:</p>
+
+                    <ol class="docs-steps">
+                        <li><strong>Open the Neon Companion app</strong> &mdash; On the connected phone</li>
+                        <li><strong>Select appropriate calibration method</strong></li>
+                        <li><strong>Follow on-screen instructions</strong></li>
+                        <li><strong>Verify accuracy</strong> &mdash; With validation targets</li>
+                    </ol>
+
+                    <div class="docs-callout docs-callout-warning">
+                        <h3>Recalibrate if:</h3>
+                        <ul>
+                            <li>Glasses are repositioned on the participant's face</li>
+                            <li>Significant time has passed</li>
+                            <li>Gaze accuracy appears poor</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="configuration">
+                    <h2>Configuration</h2>
+                    <p>Click <strong>"Configure"</strong> to access device settings.</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Default</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Scene Resolution</td>
+                                <td>1280x720</td>
+                                <td>Output video resolution (downsampled from 1600x1200)</td>
+                            </tr>
+                            <tr>
+                                <td>Scene FPS</td>
+                                <td>10</td>
+                                <td>Output frame rate (downsampled from 30 Hz)</td>
+                            </tr>
+                            <tr>
+                                <td>Eyes FPS</td>
+                                <td>30</td>
+                                <td>Eye camera output rate (downsampled from 200 Hz)</td>
+                            </tr>
+                            <tr>
+                                <td>Preview Preset</td>
+                                <td>4 (640x480)</td>
+                                <td>Live preview resolution (0-8 scale)</td>
+                            </tr>
+                            <tr>
+                                <td>Gaze Overlay</td>
+                                <td>Enabled</td>
+                                <td>Draw gaze position on recorded video</td>
+                            </tr>
+                            <tr>
+                                <td>Audio Recording</td>
+                                <td>Disabled</td>
+                                <td>Record scene microphone audio</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Device not detected</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check USB cable connection or WiFi network</li>
+                                <li>Verify Neon Companion app is running on the phone</li>
+                                <li>Check network settings if using WiFi (both devices on same network)</li>
+                                <li>Restart the module if needed</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>No gaze data appearing</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Ensure calibration was completed</li>
+                                <li>Check pupil detection in Neon Companion app</li>
+                                <li>Verify adequate lighting conditions</li>
+                                <li>Clean eye camera lenses (infrared cameras on inside of frame)</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Scene video not recording</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Check scene camera connection</li>
+                                <li>Verify camera is not in use by another app</li>
+                                <li>Check available disk space</li>
+                                <li>Review module logs for errors</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details class="docs-troubleshoot">
+                        <summary>Poor gaze accuracy</summary>
+                        <div class="docs-troubleshoot-content">
+                            <ol>
+                                <li>Recalibrate the tracker</li>
+                                <li>Ensure glasses fit snugly (not slipping)</li>
+                                <li>Check for reflections on lenses</li>
+                                <li>Verify pupil detection is stable in Companion app</li>
+                            </ol>
+                        </div>
+                    </details>
+                </section>
+
+                <div class="docs-related">
+                    <h3>External Resources</h3>
+                    <ul>
+                        <li><a href="https://docs.pupil-labs.com/neon/" target="_blank" rel="noopener">Pupil Labs Neon Documentation</a></li>
+                        <li><a href="https://docs.pupil-labs.com/neon/real-time-api/" target="_blank" rel="noopener">Neon Real-Time API</a></li>
+                        <li><a href="https://pupil-labs.github.io/pl-realtime-api/dev/" target="_blank" rel="noopener">Python Real-Time API Reference</a></li>
+                    </ul>
+                </div>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="audio.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Audio</span>
+                </a>
+                <a href="drt.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">DRT</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../research.html">Research</a>
+                <a href="../../devices.html">Devices</a>
+                <a href="../../software.html">Software</a>
+                <a href="../../publications.html">Publications</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>

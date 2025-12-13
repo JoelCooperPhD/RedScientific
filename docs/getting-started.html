@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Quick start guide for Red Scientific Logger - installation, setup, and your first recording session.">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="docs-page">
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="logo"><img src="../images/logo.png" alt="Red Scientific" class="logo-img"></a>
+            <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html" class="active">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-mobile-nav">
+        <button class="docs-menu-toggle" aria-label="Toggle documentation menu">
+            <span>&#9776;</span>
+        </button>
+        <select class="docs-page-select" onchange="window.location.href=this.value">
+            <option value="index.html">Overview</option>
+            <option value="getting-started.html" selected>Getting Started</option>
+            <optgroup label="Modules">
+                <option value="modules/cameras.html">Cameras</option>
+                <option value="modules/audio.html">Audio</option>
+                <option value="modules/eye-tracker.html">Eye Tracker</option>
+                <option value="modules/drt.html">DRT</option>
+                <option value="modules/vog.html">VOG</option>
+                <option value="modules/gps.html">GPS</option>
+                <option value="modules/notes.html">Notes</option>
+            </optgroup>
+            <optgroup label="Reference">
+                <option value="data-output.html">Data Output</option>
+                <option value="synchronization.html">Synchronization</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <a href="index.html" class="docs-logo">
+                    <img src="../images/docs/logger-icon.svg" alt="Logger" onerror="this.style.display='none'">
+                    <span>Logger Docs</span>
+                </a>
+            </div>
+
+            <nav class="docs-nav">
+                <a href="index.html" class="docs-nav-item">Overview</a>
+                <a href="getting-started.html" class="docs-nav-item active">Getting Started</a>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Modules</span>
+                    <a href="modules/cameras.html" class="docs-nav-item">Cameras</a>
+                    <a href="modules/audio.html" class="docs-nav-item">Audio</a>
+                    <a href="modules/eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
+                    <a href="modules/drt.html" class="docs-nav-item">DRT</a>
+                    <a href="modules/vog.html" class="docs-nav-item">VOG</a>
+                    <a href="modules/gps.html" class="docs-nav-item">GPS</a>
+                    <a href="modules/notes.html" class="docs-nav-item">Notes</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Reference</span>
+                    <a href="data-output.html" class="docs-nav-item">Data Output</a>
+                    <a href="synchronization.html" class="docs-nav-item">Synchronization</a>
+                </div>
+
+                <div class="docs-nav-section">
+                    <span class="docs-nav-heading">Legacy</span>
+                    <a href="legacy/rs-logger-windows.html" class="docs-nav-item">RS Logger (Windows)</a>
+                </div>
+            </nav>
+
+            <div class="docs-sidebar-footer">
+                <a href="../software.html" class="btn btn-primary">Download</a>
+            </div>
+        </aside>
+
+        <main class="docs-content">
+            <div class="docs-breadcrumb">
+                <a href="../software.html">Software</a>
+                <span>/</span>
+                <a href="index.html">Documentation</a>
+                <span>/</span>
+                <span>Getting Started</span>
+            </div>
+
+            <article class="docs-article">
+                <h1>Getting Started</h1>
+                <p class="lead">Get up and running with Logger in minutes. This guide covers installation, basic setup, and your first recording session.</p>
+
+                <nav class="docs-toc">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#requirements">System Requirements</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#first-launch">First Launch</a></li>
+                        <li><a href="#connecting-devices">Connecting Devices</a></li>
+                        <li><a href="#first-session">Your First Recording Session</a></li>
+                        <li><a href="#next-steps">Next Steps</a></li>
+                    </ul>
+                </nav>
+
+                <section id="requirements">
+                    <h2>System Requirements</h2>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Requirement</th>
+                                <th>Specification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Platform</td>
+                                <td>Raspberry Pi 5 (Pi 4 compatible)</td>
+                            </tr>
+                            <tr>
+                                <td>Operating System</td>
+                                <td>Raspberry Pi OS Bookworm (64-bit recommended)</td>
+                            </tr>
+                            <tr>
+                                <td>Python</td>
+                                <td>3.11 or newer</td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td>4GB minimum, 8GB recommended</td>
+                            </tr>
+                            <tr>
+                                <td>Storage</td>
+                                <td>USB 3.0 SSD recommended for video recording</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Storage Recommendations</h3>
+                        <p>For video recording, we strongly recommend using a USB 3.0 SSD rather than the microSD card. SD cards can cause frame drops during high-bitrate video capture.</p>
+                    </div>
+                </section>
+
+                <section id="installation">
+                    <h2>Installation</h2>
+
+                    <h3>Option 1: Download Pre-built Package</h3>
+                    <p>Download the latest release from our <a href="../software.html">Software page</a>.</p>
+
+                    <h3>Option 2: Install from Source</h3>
+                    <ol class="docs-steps">
+                        <li>
+                            <strong>Clone the repository</strong>
+                            <pre class="docs-code"><code>git clone https://github.com/redscientific/logger.git
+cd logger</code></pre>
+                        </li>
+                        <li>
+                            <strong>Create a virtual environment</strong>
+                            <pre class="docs-code"><code>python3 -m venv venv
+source venv/bin/activate</code></pre>
+                        </li>
+                        <li>
+                            <strong>Install dependencies</strong>
+                            <pre class="docs-code"><code>pip install -r requirements.txt</code></pre>
+                        </li>
+                        <li>
+                            <strong>Run Logger</strong>
+                            <pre class="docs-code"><code>python -m rpi_logger</code></pre>
+                        </li>
+                    </ol>
+
+                    <h3>System Dependencies</h3>
+                    <p>Some modules require additional system packages:</p>
+                    <pre class="docs-code"><code># Camera support (CSI cameras)
+sudo apt install libcamera-dev python3-libcamera python3-picamera2
+
+# Audio support
+sudo apt install portaudio19-dev
+
+# GPS support (optional)
+sudo apt install gpsd gpsd-clients</code></pre>
+                </section>
+
+                <section id="first-launch">
+                    <h2>First Launch</h2>
+
+                    <p>When you first launch Logger, you'll see the main window with:</p>
+
+                    <ul>
+                        <li><strong>Menu Bar</strong> &mdash; Access to Modules, Session controls, and Settings</li>
+                        <li><strong>Devices Panel</strong> &mdash; Shows detected hardware devices</li>
+                        <li><strong>Log Panel</strong> &mdash; System messages and status updates</li>
+                        <li><strong>Status Bar</strong> &mdash; Connection status and session state</li>
+                    </ul>
+
+                    <h3>Enabling Modules</h3>
+                    <p>By default, no modules are enabled. To enable modules:</p>
+                    <ol>
+                        <li>Go to <strong>Modules</strong> menu</li>
+                        <li>Check the modules you want to use (e.g., Cameras, Audio, DRT)</li>
+                        <li>Connected devices will appear in the Devices panel</li>
+                    </ol>
+                </section>
+
+                <section id="connecting-devices">
+                    <h2>Connecting Devices</h2>
+
+                    <h3>USB Devices</h3>
+                    <p>Most devices connect automatically when plugged in:</p>
+                    <ul>
+                        <li><strong>DRT</strong> &mdash; USB cable, appears as serial port</li>
+                        <li><strong>VOG</strong> &mdash; USB cable, appears as serial port</li>
+                        <li><strong>Audio</strong> &mdash; USB microphones, auto-detected</li>
+                        <li><strong>Cameras</strong> &mdash; USB webcams, auto-detected</li>
+                    </ul>
+
+                    <h3>CSI Cameras</h3>
+                    <p>Raspberry Pi camera modules connect via the ribbon cable:</p>
+                    <ol>
+                        <li>Power off the Pi</li>
+                        <li>Connect the ribbon cable (blue side facing Ethernet port)</li>
+                        <li>Power on and enable the camera in <code>raspi-config</code></li>
+                    </ol>
+
+                    <h3>Network Devices</h3>
+                    <p>Some devices connect over the network:</p>
+                    <ul>
+                        <li><strong>Pupil Labs Neon</strong> &mdash; WiFi or USB tethering</li>
+                        <li><strong>wDRT/wVOG</strong> &mdash; XBee wireless via USB dongle</li>
+                    </ul>
+
+                    <h3>GPS</h3>
+                    <p>UART GPS receivers (like BerryGPS) connect to the GPIO header. See the <a href="modules/gps.html#hardware-setup">GPS Hardware Setup</a> for details.</p>
+                </section>
+
+                <section id="first-session">
+                    <h2>Your First Recording Session</h2>
+
+                    <ol class="docs-steps">
+                        <li>
+                            <strong>Enable modules</strong>
+                            <p>Go to Modules menu and enable the modules for your connected devices.</p>
+                        </li>
+                        <li>
+                            <strong>Verify device detection</strong>
+                            <p>Check the Devices panel to ensure all your devices are detected and showing "Connected" status.</p>
+                        </li>
+                        <li>
+                            <strong>Configure output directory</strong>
+                            <p>Go to <strong>Session &gt; Set Output Directory</strong> to choose where data will be saved. We recommend a USB SSD for video recording.</p>
+                        </li>
+                        <li>
+                            <strong>Start Session</strong>
+                            <p>Click <strong>Session &gt; Start Session</strong> or use the keyboard shortcut. This initializes all modules and creates a session folder.</p>
+                        </li>
+                        <li>
+                            <strong>Record a trial</strong>
+                            <p>Click <strong>Session &gt; Start Recording</strong> to begin capturing data. All enabled modules will start recording simultaneously.</p>
+                        </li>
+                        <li>
+                            <strong>Stop recording</strong>
+                            <p>Click <strong>Session &gt; Stop Recording</strong> when finished. Data is automatically saved.</p>
+                        </li>
+                        <li>
+                            <strong>End Session</strong>
+                            <p>Click <strong>Session &gt; End Session</strong> to finalize and close all modules.</p>
+                        </li>
+                    </ol>
+
+                    <h3>Session Output</h3>
+                    <p>After your session, you'll find a folder structure like:</p>
+                    <pre class="docs-code"><code>session_20251208_143022/
+├── Cameras/
+│   ├── usb_0_001/
+│   │   ├── trial_001_usb_0_001.avi
+│   │   ├── trial_001_usb_0_001_timing.csv
+│   │   └── trial_001_usb_0_001_metadata.csv
+├── Audio/
+│   ├── 20251208_143022_AUDIO_trial001_MIC0.wav
+│   └── 20251208_143022_AUDIOTIMING_trial001_MIC0.csv
+├── DRT/
+│   └── 20251208_143022_DRT_trial001_DRT_ttyACM0.csv
+└── Notes/
+    └── 20251208_143022_NOTES_trial001.csv</code></pre>
+                </section>
+
+                <section id="next-steps">
+                    <h2>Next Steps</h2>
+
+                    <div class="docs-feature-grid">
+                        <a href="modules/cameras.html" class="docs-feature-card">
+                            <h3>Configure Cameras</h3>
+                            <p>Set resolution, frame rate, and preview settings for your cameras.</p>
+                        </a>
+                        <a href="data-output.html" class="docs-feature-card">
+                            <h3>Understand Data Output</h3>
+                            <p>Learn about the file formats and data structure for each module.</p>
+                        </a>
+                        <a href="synchronization.html" class="docs-feature-card">
+                            <h3>Cross-Module Sync</h3>
+                            <p>Learn how to correlate data across video, audio, and other modules.</p>
+                        </a>
+                        <a href="modules/drt.html" class="docs-feature-card">
+                            <h3>Configure DRT</h3>
+                            <p>Set up ISO 17488 parameters for cognitive workload measurement.</p>
+                        </a>
+                    </div>
+                </section>
+            </article>
+
+            <nav class="docs-pagination">
+                <a href="index.html" class="docs-pagination-prev">
+                    <span class="docs-pagination-label">Previous</span>
+                    <span class="docs-pagination-title">Overview</span>
+                </a>
+                <a href="modules/cameras.html" class="docs-pagination-next">
+                    <span class="docs-pagination-label">Next</span>
+                    <span class="docs-pagination-title">Cameras Module</span>
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../images/logo.png" alt="Red Scientific" class="logo-img">
+            </div>
+            <nav class="footer-nav">
+                <a href="../index.html">Home</a>
+                <a href="../research.html">Research</a>
+                <a href="../devices.html">Devices</a>
+                <a href="../software.html">Software</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:joel@redscientific.com">joel@redscientific.com</a>
+                <span class="separator">|</span>
+                <a href="tel:+18015205408">801-520-5408</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/joel-cooper-a5616147" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://scholar.google.com/citations?user=LfO53RQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Red Scientific. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('open');
+        });
+
+        const docsMenuToggle = document.querySelector('.docs-menu-toggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        if (docsMenuToggle && docsSidebar) {
+            docsMenuToggle.addEventListener('click', function() {
+                docsSidebar.classList.toggle('open');
+            });
+        }
+    </script>
+</body>
+</html>
