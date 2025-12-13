@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOG Module | Logger Documentation | Red Scientific</title>
-    <meta name="description" content="Documentation for the Logger VOG module - Visual Occlusion Glasses for vision research experiments with millisecond-precision shutter control.">
+    <title>Visual Occlusion Goggles Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Visual Occlusion Goggles module - electronically controlled goggles for vision research experiments with millisecond-precision shutter control.">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../docs.css">
 </head>
@@ -36,8 +36,8 @@
                 <option value="cameras.html">Cameras</option>
                 <option value="audio.html">Audio</option>
                 <option value="eye-tracker.html">Eye Tracker</option>
-                <option value="drt.html">DRT</option>
-                <option value="vog.html" selected>VOG</option>
+                <option value="drt.html">Detection Response Task</option>
+                <option value="vog.html" selected>Visual Occlusion Goggles</option>
                 <option value="gps.html">GPS</option>
                 <option value="notes.html">Notes</option>
             </optgroup>
@@ -66,8 +66,8 @@
                     <a href="cameras.html" class="docs-nav-item">Cameras</a>
                     <a href="audio.html" class="docs-nav-item">Audio</a>
                     <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
-                    <a href="drt.html" class="docs-nav-item">DRT</a>
-                    <a href="vog.html" class="docs-nav-item active">VOG</a>
+                    <a href="drt.html" class="docs-nav-item">Detection Response Task</a>
+                    <a href="vog.html" class="docs-nav-item active">Visual Occlusion Goggles</a>
                     <a href="gps.html" class="docs-nav-item">GPS</a>
                     <a href="notes.html" class="docs-nav-item">Notes</a>
                 </div>
@@ -91,18 +91,18 @@
                 <span>/</span>
                 <a href="../index.html">Documentation</a>
                 <span>/</span>
-                <span>VOG</span>
+                <span>Visual Occlusion Goggles</span>
             </div>
 
             <article class="docs-article">
-                <h1>VOG Module</h1>
-                <p class="lead">Visual Occlusion Glasses for vision research experiments with millisecond-precision electronic shutter control.</p>
+                <h1>Visual Occlusion Goggles Module</h1>
+                <p class="lead">Electronically controlled goggles for vision research experiments with millisecond-precision shutter control.</p>
 
-                <p>The VOG (Visual Occlusion Glasses) module controls electronic shutter glasses for vision research experiments. The glasses can rapidly switch between clear (transparent) and opaque states with millisecond precision, enabling precise control of visual stimulus presentation.</p>
+                <p>The Visual Occlusion Goggles module controls electronic shutter goggles for vision research experiments. The goggles can rapidly switch between clear (transparent) and opaque states with millisecond precision, enabling precise control of visual stimulus presentation.</p>
 
                 <div class="docs-callout docs-callout-hardware">
                     <h3>Red Scientific Hardware</h3>
-                    <p>VOG devices are available from Red Scientific. See our <a href="../../devices/occlusion-goggles.html">Occlusion Goggles product page</a> for specifications and purchasing information.</p>
+                    <p>Visual Occlusion Goggles are available from Red Scientific. See our <a href="../../devices/occlusion-goggles.html">Occlusion Goggles product page</a> for specifications and purchasing information.</p>
                 </div>
 
                 <nav class="docs-toc">
@@ -121,8 +121,8 @@
                 <section id="getting-started">
                     <h2>Getting Started</h2>
                     <ol class="docs-steps">
-                        <li><strong>Connect your VOG device</strong> &mdash; Via USB</li>
-                        <li><strong>Enable the VOG module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Connect your Visual Occlusion Goggles</strong> &mdash; Via USB</li>
+                        <li><strong>Enable the Visual Occlusion Goggles module</strong> &mdash; From the Modules menu</li>
                         <li><strong>Wait for the device tab</strong> &mdash; Indicates successful detection</li>
                         <li><strong>Use lens controls or start recording</strong></li>
                     </ol>
@@ -323,7 +323,7 @@
                     <ul>
                         <li>Video frames (via camera <code>capture_time_unix</code>)</li>
                         <li>Audio samples (via audio <code>write_time_unix</code>)</li>
-                        <li>DRT trials (via DRT <code>Unix time in UTC</code>)</li>
+                        <li>Detection Response Task trials (via <code>Unix time in UTC</code>)</li>
                         <li>Eye tracking data (via <code>record_time_unix</code>)</li>
                     </ul>
                 </section>
@@ -431,7 +431,7 @@
             <nav class="docs-pagination">
                 <a href="drt.html" class="docs-pagination-prev">
                     <span class="docs-pagination-label">Previous</span>
-                    <span class="docs-pagination-title">DRT</span>
+                    <span class="docs-pagination-title">Detection Response Task</span>
                 </a>
                 <a href="gps.html" class="docs-pagination-next">
                     <span class="docs-pagination-label">Next</span>

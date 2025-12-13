@@ -38,6 +38,10 @@
     <main>
         <section class="section-light">
             <div class="content-block">
+                <div class="download-cta">
+                    <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" class="btn btn-primary btn-large" target="_blank" rel="noopener">Download Logger</a>
+                    <span class="download-platforms">Windows · macOS · Linux · Raspberry Pi</span>
+                </div>
                 <div class="software-hero">
                     <div class="software-hero-content">
                         <h2>Cross-Platform Data Acquisition</h2>
@@ -46,7 +50,7 @@
                         <div class="software-features">
                             <div class="software-feature">
                                 <strong>7 Modules</strong>
-                                <span>Cameras, Audio, Eye Tracker, DRT, VOG, GPS, Notes</span>
+                                <span>Cameras, Audio, Eye Tracking, Response Task, Occlusion, GPS, Notes</span>
                             </div>
                             <div class="software-feature">
                                 <strong>Synchronized</strong>
@@ -93,14 +97,14 @@
                 </a>
                 <a href="docs/modules/drt.html" class="card card-link">
                     <span class="tag">Cognitive Load</span>
-                    <h3>DRT</h3>
-                    <p>Detection Response Task devices (wired & wireless) for cognitive workload measurement per ISO 17488.</p>
+                    <h3>Detection Response Task</h3>
+                    <p>Wired and wireless response task devices for cognitive workload measurement per ISO 17488.</p>
                     <span class="card-cta">Learn more</span>
                 </a>
                 <a href="docs/modules/vog.html" class="card card-link">
                     <span class="tag">Visual Demand</span>
-                    <h3>VOG</h3>
-                    <p>Visual Occlusion Glasses with experiment modes for vision research (Cycle, Peek, eBlindfold, Direct).</p>
+                    <h3>Visual Occlusion Goggles</h3>
+                    <p>Electronically controlled goggles with experiment modes for vision research (Cycle, Peek, eBlindfold, Direct).</p>
                     <span class="card-cta">Learn more</span>
                 </a>
                 <a href="docs/modules/gps.html" class="card card-link">
@@ -157,7 +161,7 @@
             </div>
             <div class="card-grid">
                 <a href="devices/drt.html" class="card device-card card-link">
-                    <img src="images/response.png" alt="DRT Response Button" class="card-image">
+                    <img src="images/response.png" alt="Detection Response Task Button" class="card-image">
                     <span class="tag">Hardware</span>
                     <h3>Detection Response Task</h3>
                     <p>ISO 17488 compliant cognitive load measurement. Available in wired (USB) and wireless (XBee) configurations.</p>
@@ -212,6 +216,21 @@
     </script>
 
     <style>
+        .download-cta {
+            text-align: center;
+            padding: 2rem 0 3rem;
+        }
+        .download-cta .btn-large {
+            font-size: 1.25rem;
+            padding: 1rem 2.5rem;
+            display: inline-block;
+        }
+        .download-platforms {
+            display: block;
+            margin-top: 0.75rem;
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+        }
         .software-hero {
             display: flex;
             gap: 3rem;

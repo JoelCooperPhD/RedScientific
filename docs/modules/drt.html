@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRT Module | Logger Documentation | Red Scientific</title>
-    <meta name="description" content="Documentation for the Logger DRT module - Detection Response Task for cognitive workload measurement with reaction time recording.">
+    <title>Detection Response Task Module | Logger Documentation | Red Scientific</title>
+    <meta name="description" content="Documentation for the Logger Detection Response Task module - cognitive workload measurement with millisecond-precision reaction time recording.">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../docs.css">
 </head>
@@ -36,8 +36,8 @@
                 <option value="cameras.html">Cameras</option>
                 <option value="audio.html">Audio</option>
                 <option value="eye-tracker.html">Eye Tracker</option>
-                <option value="drt.html" selected>DRT</option>
-                <option value="vog.html">VOG</option>
+                <option value="drt.html" selected>Detection Response Task</option>
+                <option value="vog.html">Visual Occlusion Goggles</option>
                 <option value="gps.html">GPS</option>
                 <option value="notes.html">Notes</option>
             </optgroup>
@@ -66,8 +66,8 @@
                     <a href="cameras.html" class="docs-nav-item">Cameras</a>
                     <a href="audio.html" class="docs-nav-item">Audio</a>
                     <a href="eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
-                    <a href="drt.html" class="docs-nav-item active">DRT</a>
-                    <a href="vog.html" class="docs-nav-item">VOG</a>
+                    <a href="drt.html" class="docs-nav-item active">Detection Response Task</a>
+                    <a href="vog.html" class="docs-nav-item">Visual Occlusion Goggles</a>
                     <a href="gps.html" class="docs-nav-item">GPS</a>
                     <a href="notes.html" class="docs-nav-item">Notes</a>
                 </div>
@@ -91,18 +91,18 @@
                 <span>/</span>
                 <a href="../index.html">Documentation</a>
                 <span>/</span>
-                <span>DRT</span>
+                <span>Detection Response Task</span>
             </div>
 
             <article class="docs-article">
-                <h1>DRT Module</h1>
-                <p class="lead">Detection Response Task for cognitive workload measurement with millisecond-precision reaction time recording.</p>
+                <h1>Detection Response Task Module</h1>
+                <p class="lead">Cognitive workload measurement with millisecond-precision reaction time recording.</p>
 
-                <p>The DRT (Detection Response Task) module measures cognitive workload by recording reaction times to visual stimuli. Participants respond to a red LED stimulus by pressing a button as quickly as possible. Degraded reaction times indicate increased cognitive load.</p>
+                <p>The Detection Response Task module measures cognitive workload by recording reaction times to visual stimuli. Participants respond to a red LED stimulus by pressing a button as quickly as possible. Degraded reaction times indicate increased cognitive load.</p>
 
                 <div class="docs-callout docs-callout-hardware">
                     <h3>Red Scientific Hardware</h3>
-                    <p>DRT devices are available from Red Scientific. See our <a href="../../devices/drt.html">DRT product page</a> for specifications and purchasing information.</p>
+                    <p>Detection Response Task devices are available from Red Scientific. See our <a href="../../devices/drt.html">Detection Response Task product page</a> for specifications and purchasing information.</p>
                 </div>
 
                 <nav class="docs-toc">
@@ -122,8 +122,8 @@
                 <section id="getting-started">
                     <h2>Getting Started</h2>
                     <ol class="docs-steps">
-                        <li><strong>Connect your DRT device</strong> &mdash; Via USB (or XBee dongle for wDRT)</li>
-                        <li><strong>Enable the DRT module</strong> &mdash; From the Modules menu</li>
+                        <li><strong>Connect your Detection Response Task device</strong> &mdash; Via USB (or XBee dongle for wireless)</li>
+                        <li><strong>Enable the Detection Response Task module</strong> &mdash; From the Modules menu</li>
                         <li><strong>Wait for device detection</strong> &mdash; Status shows device port</li>
                         <li><strong>Start a session</strong> &mdash; To begin recording reaction times</li>
                     </ol>
@@ -189,7 +189,7 @@
                     </ul>
 
                     <h3>During Recording</h3>
-                    <p>The DRT device automatically:</p>
+                    <p>The Detection Response Task device automatically:</p>
                     <ul>
                         <li>Presents stimuli at random intervals (ISI range)</li>
                         <li>Records reaction time for each stimulus</li>
@@ -283,7 +283,7 @@
 
                     <h4>Reaction Time Measurement</h4>
                     <pre class="docs-code"><code>Reaction Time = Device End Time - Stimulus Onset Time</code></pre>
-                    <p>The DRT device firmware measures reaction time internally with typical accuracy of 1-5 ms.</p>
+                    <p>The Detection Response Task device firmware measures reaction time internally with typical accuracy of 1-5 ms.</p>
 
                     <h4>Timestamp Precision</h4>
                     <ul>
@@ -301,7 +301,7 @@
                         <li>Video frames (via camera timing CSV)</li>
                         <li>Audio samples (via audio timing CSV)</li>
                         <li>Eye tracking data (via gaze CSV)</li>
-                        <li>VOG lens states (wDRT Lens column when synced)</li>
+                        <li>Visual Occlusion Goggles lens states (when synced)</li>
                     </ul>
                 </section>
 
@@ -384,7 +384,7 @@
                     <p>A "Miss" occurs when the participant fails to respond before the stimulus turns off. Misses indicate:</p>
                     <ul>
                         <li>High cognitive workload</li>
-                        <li>Inattention to the DRT task</li>
+                        <li>Inattention to the Detection Response Task</li>
                         <li>Possible equipment issues (check device)</li>
                     </ul>
 
@@ -494,7 +494,7 @@
                 </a>
                 <a href="vog.html" class="docs-pagination-next">
                     <span class="docs-pagination-label">Next</span>
-                    <span class="docs-pagination-title">VOG</span>
+                    <span class="docs-pagination-title">Visual Occlusion Goggles</span>
                 </a>
             </nav>
         </main>

@@ -36,8 +36,8 @@
                 <option value="modules/cameras.html">Cameras</option>
                 <option value="modules/audio.html">Audio</option>
                 <option value="modules/eye-tracker.html">Eye Tracker</option>
-                <option value="modules/drt.html">DRT</option>
-                <option value="modules/vog.html">VOG</option>
+                <option value="modules/drt.html">Detection Response Task</option>
+                <option value="modules/vog.html">Visual Occlusion Goggles</option>
                 <option value="modules/gps.html">GPS</option>
                 <option value="modules/notes.html">Notes</option>
             </optgroup>
@@ -66,8 +66,8 @@
                     <a href="modules/cameras.html" class="docs-nav-item">Cameras</a>
                     <a href="modules/audio.html" class="docs-nav-item">Audio</a>
                     <a href="modules/eye-tracker.html" class="docs-nav-item">Eye Tracker</a>
-                    <a href="modules/drt.html" class="docs-nav-item">DRT</a>
-                    <a href="modules/vog.html" class="docs-nav-item">VOG</a>
+                    <a href="modules/drt.html" class="docs-nav-item">Detection Response Task</a>
+                    <a href="modules/vog.html" class="docs-nav-item">Visual Occlusion Goggles</a>
                     <a href="modules/gps.html" class="docs-nav-item">GPS</a>
                     <a href="modules/notes.html" class="docs-nav-item">Notes</a>
                 </div>
@@ -143,7 +143,7 @@
                         <li><strong>CSI Cameras:</strong> <code>sensor_timestamp_ns</code> (nanoseconds from camera hardware)</li>
                         <li><strong>Audio:</strong> <code>adc_timestamp</code> (from audio hardware, if available)</li>
                         <li><strong>GPS:</strong> <code>timestamp_utc</code> (atomic clock derived, highest absolute accuracy)</li>
-                        <li><strong>DRT/VOG:</strong> <code>Milliseconds Since Record</code> (device internal time)</li>
+                        <li><strong>Detection Response Task / Visual Occlusion Goggles:</strong> <code>Milliseconds Since Record</code> (device internal time)</li>
                     </ul>
                 </section>
 
@@ -179,13 +179,13 @@
                                 <td>High-frequency gaze data</td>
                             </tr>
                             <tr>
-                                <td>DRT</td>
+                                <td>Detection Response Task</td>
                                 <td>&mdash;</td>
                                 <td><code>Unix time in UTC</code></td>
                                 <td>Event-based (one row per trial)</td>
                             </tr>
                             <tr>
-                                <td>VOG</td>
+                                <td>Visual Occlusion Goggles</td>
                                 <td>&mdash;</td>
                                 <td><code>Unix time in UTC</code></td>
                                 <td>Event-based (lens state changes)</td>
@@ -267,8 +267,8 @@ gaze_at_frame = gaze_data[
     (gaze_data['record_time_mono'] < frame_time + tolerance)
 ]</code></pre>
 
-                    <h3>Find DRT Trial at a Video Frame</h3>
-                    <p>To find which DRT trial was occurring during a video frame:</p>
+                    <h3>Find Detection Response Task Trial at a Video Frame</h3>
+                    <p>To find which Detection Response Task trial was occurring during a video frame:</p>
 
                     <pre class="docs-code"><code># Python example
 camera_timing = pd.read_csv('trial_001_usb_0_001_timing.csv')
@@ -276,7 +276,7 @@ drt_data = pd.read_csv('20251208_DRT_trial001.csv')
 
 frame_time_unix = camera_timing.loc[100, 'capture_time_unix']
 
-# Find DRT trial closest to frame time
+# Find Detection Response Task trial closest to frame time
 drt_data['time_diff'] = abs(drt_data['Unix time in UTC'] - frame_time_unix)
 closest_trial = drt_data.loc[drt_data['time_diff'].idxmin()]</code></pre>
 
@@ -327,7 +327,7 @@ print(f"Note '{notes.loc[0, 'Content']}' at frame {frame_at_note}")</code></pre>
                                 <td>Network latency from Neon device</td>
                             </tr>
                             <tr>
-                                <td>DRT/VOG</td>
+                                <td>Detection Response Task / Visual Occlusion Goggles</td>
                                 <td>~1-5 ms</td>
                                 <td>USB serial latency + firmware timing</td>
                             </tr>
@@ -368,7 +368,7 @@ print(f"Note '{notes.loc[0, 'Content']}' at frame {frame_at_note}")</code></pre>
                         <li>Video: 30-60 Hz</li>
                         <li>Audio: 48,000 Hz</li>
                         <li>Gaze: 30-200 Hz</li>
-                        <li>DRT: Event-based (~0.2-0.3 Hz)</li>
+                        <li>Detection Response Task: Event-based (~0.2-0.3 Hz)</li>
                         <li>GPS: 1-10 Hz</li>
                     </ul>
                     <p>When correlating, interpolate or find nearest neighbor as appropriate.</p>
