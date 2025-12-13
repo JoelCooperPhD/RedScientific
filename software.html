@@ -41,6 +41,7 @@
                 <div class="download-cta">
                     <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" class="btn btn-primary btn-large" target="_blank" rel="noopener">Download Logger</a>
                     <span class="download-platforms">Windows · macOS · Linux · Raspberry Pi</span>
+                    <a href="docs/getting-started.html" class="download-docs-link">New to Logger? Start here →</a>
                 </div>
                 <div class="software-hero">
                     <div class="software-hero-content">
@@ -56,14 +57,6 @@
                                 <strong>Synchronized</strong>
                                 <span>Frame-level timing across all data streams</span>
                             </div>
-                            <div class="software-feature">
-                                <strong>Cross-Platform</strong>
-                                <span>Windows, macOS, Linux, Raspberry Pi</span>
-                            </div>
-                        </div>
-
-                        <div class="software-buttons">
-                            <a href="docs/getting-started.html" class="btn btn-secondary">Getting Started</a>
                         </div>
                     </div>
                 </div>
@@ -72,8 +65,8 @@
 
         <section class="section-alt">
             <div class="section-header">
-                <span class="section-eyebrow">Modules</span>
-                <h2>Capture Everything You Need</h2>
+                <span class="section-eyebrow">Documentation</span>
+                <h2>Module Guides</h2>
             </div>
             <div class="card-grid">
                 <a href="docs/modules/cameras.html" class="card card-link">
@@ -230,6 +223,16 @@
             color: var(--gray-medium);
             font-size: 0.95rem;
         }
+        .download-docs-link {
+            display: block;
+            margin-top: 1rem;
+            color: var(--red);
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        .download-docs-link:hover {
+            text-decoration: underline;
+        }
         .software-hero {
             display: flex;
             gap: 3rem;
@@ -251,9 +254,9 @@
         }
         .software-features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 0;
         }
         .software-feature {
             display: flex;
@@ -305,6 +308,7 @@
         @media (max-width: 768px) {
             .software-features {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             .software-hero-content h2 {
                 font-size: 1.5rem;
