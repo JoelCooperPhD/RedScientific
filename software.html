@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software | Red Scientific</title>
-    <meta name="description" content="Download Red Scientific Logger - synchronized multi-sensor data collection for automotive and human factors research on Raspberry Pi.">
+    <meta name="description" content="Download Red Scientific Logger - cross-platform synchronized multi-sensor data collection for automotive and human factors research. Available for Windows, macOS, Linux, and Raspberry Pi.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,8 +40,8 @@
             <div class="content-block">
                 <div class="software-hero">
                     <div class="software-hero-content">
-                        <h2>Professional Data Acquisition for Raspberry Pi</h2>
-                        <p>Logger is a modular data collection platform designed for researchers who need synchronized capture of video, audio, eye tracking, and behavioral task data. All modules record with <strong>frame-level synchronization</strong> (~30ms accuracy) and export timestamped CSV data for analysis.</p>
+                        <h2>Cross-Platform Data Acquisition</h2>
+                        <p>Logger is a modular data collection platform designed for researchers who need synchronized capture of video, audio, eye tracking, and behavioral task data. Runs on <strong>Windows, macOS, Linux, and Raspberry Pi</strong>. All modules record with <strong>frame-level synchronization</strong> (~30ms accuracy) and export timestamped CSV data for analysis.</p>
 
                         <div class="software-features">
                             <div class="software-feature">
@@ -53,13 +53,13 @@
                                 <span>Frame-level timing across all data streams</span>
                             </div>
                             <div class="software-feature">
-                                <strong>Portable</strong>
-                                <span>Battery-powered operation for field research</span>
+                                <strong>Cross-Platform</strong>
+                                <span>Windows, macOS, Linux, Raspberry Pi</span>
                             </div>
                         </div>
 
                         <div class="software-buttons">
-                            <a href="docs/index.html" class="btn btn-primary">Documentation</a>
+                            <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" class="btn btn-primary" target="_blank" rel="noopener">Download</a>
                             <a href="docs/getting-started.html" class="btn btn-secondary">Getting Started</a>
                         </div>
                     </div>
@@ -105,8 +105,8 @@
                 </a>
                 <a href="docs/modules/gps.html" class="card card-link">
                     <span class="tag">Location</span>
-                    <h3>GPS</h3>
-                    <p>Real-time location tracking with offline map support and comprehensive NMEA data parsing.</p>
+                    <h3>GPS <span style="font-size: 0.75rem; opacity: 0.7;">(RPi only)</span></h3>
+                    <p>BerryGPS-IMU integration with real-time location tracking, offline maps, and NMEA data parsing.</p>
                     <span class="card-cta">Learn more</span>
                 </a>
             </div>
@@ -114,40 +114,38 @@
 
         <section class="section-light">
             <div class="section-header">
-                <span class="section-eyebrow">Requirements</span>
-                <h2>System Requirements</h2>
+                <span class="section-eyebrow">Downloads</span>
+                <h2>Get Logger</h2>
             </div>
             <div class="content-block">
+                <p style="text-align: center; margin-bottom: 2rem;"><strong>No installation required!</strong> Download, extract (if needed), and run.</p>
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Requirement</th>
-                            <th>Specification</th>
+                            <th>Platform</th>
+                            <th>Download</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Platform</td>
-                            <td>Raspberry Pi 5 (Pi 4 compatible)</td>
+                            <td><strong>Windows</strong></td>
+                            <td><a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">RPi-Logger-Windows.zip</a></td>
                         </tr>
                         <tr>
-                            <td>Operating System</td>
-                            <td>Raspberry Pi OS Bookworm (64-bit)</td>
+                            <td><strong>macOS</strong></td>
+                            <td><a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">RPi-Logger-macOS.zip</a></td>
                         </tr>
                         <tr>
-                            <td>Python</td>
-                            <td>3.11 or newer</td>
+                            <td><strong>Linux</strong></td>
+                            <td><a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">RPi-Logger-x86_64.AppImage</a></td>
                         </tr>
                         <tr>
-                            <td>RAM</td>
-                            <td>4GB minimum, 8GB recommended</td>
-                        </tr>
-                        <tr>
-                            <td>Storage</td>
-                            <td>USB 3.0 SSD recommended for video recording</td>
+                            <td><strong>Raspberry Pi</strong></td>
+                            <td><a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">RPi-Logger-RaspberryPi-arm64.tar.gz</a></td>
                         </tr>
                     </tbody>
                 </table>
+                <p style="text-align: center; margin-top: 1.5rem;"><a href="https://github.com/JoelCooperPhD/RPi_Logger" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a></p>
             </div>
         </section>
 
@@ -181,10 +179,10 @@
         <section class="section-alt">
             <div class="section-header">
                 <span class="section-eyebrow">Legacy</span>
-                <h2>RS Logger for Windows</h2>
+                <h2>RS Logger (Original)</h2>
             </div>
             <div class="content-block">
-                <p>For Windows users who only need DRT and VOG support, we continue to offer RS Logger - our original Windows application.</p>
+                <p>RS Logger is our original Windows-only DRT and VOG control software. For new deployments, we recommend Logger which includes all RS Logger features plus additional modules (cameras, audio, eye tracking, GPS, notes) with cross-platform support.</p>
                 <div class="software-buttons" style="margin-top: 1.5rem;">
                     <a href="docs/legacy/rs-logger-windows.html" class="btn btn-secondary">RS Logger Documentation</a>
                     <a href="devices/rs-logger.html" class="btn btn-outline">Product Page</a>

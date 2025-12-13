@@ -98,9 +98,9 @@
 
             <article class="docs-article">
                 <h1>Logger Documentation</h1>
-                <p class="lead">Synchronized multi-sensor data collection for automotive and human factors research on Raspberry Pi.</p>
+                <p class="lead">Cross-platform synchronized multi-sensor data collection for automotive and human factors research.</p>
 
-                <p>Logger is a professional data acquisition platform designed for researchers who need synchronized capture of video, audio, eye tracking, and behavioral task data. All modules record with <strong>frame-level synchronization</strong> (~30ms accuracy) and export timestamped CSV data for analysis.</p>
+                <p>Logger is a professional data acquisition platform designed for researchers who need synchronized capture of video, audio, eye tracking, and behavioral task data. Available for <strong>Windows, macOS, Linux, and Raspberry Pi</strong>. All modules record with <strong>frame-level synchronization</strong> (~30ms accuracy) and export timestamped CSV data for analysis.</p>
 
                 <nav class="docs-toc">
                     <h2>On this page</h2>
@@ -139,8 +139,8 @@
                             <p>Visual Occlusion Glasses with experiment modes for vision research (Cycle, Peek, eBlindfold, Direct).</p>
                         </a>
                         <a href="modules/gps.html" class="docs-feature-card">
-                            <h3>GPS</h3>
-                            <p>Real-time location tracking with offline map support and comprehensive NMEA data parsing.</p>
+                            <h3>GPS <span style="font-size: 0.75rem; color: var(--gray-medium);">(RPi only)</span></h3>
+                            <p>BerryGPS-IMU integration with real-time location tracking, offline maps, and comprehensive NMEA data parsing.</p>
                         </a>
                         <a href="modules/notes.html" class="docs-feature-card">
                             <h3>Notes</h3>
@@ -162,7 +162,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>IMX296 Global Shutter Camera</td>
+                                <td>IMX296 Global Shutter Camera <em>(RPi only)</em></td>
                                 <td>CSI</td>
                                 <td><a href="modules/cameras.html">Cameras</a></td>
                             </tr>
@@ -202,7 +202,7 @@
                                 <td><a href="modules/vog.html">VOG</a></td>
                             </tr>
                             <tr>
-                                <td>OzzMaker BerryGPS</td>
+                                <td><a href="https://ozzmaker.com/berrygps-gsm-overview/" target="_blank" rel="noopener">OzzMaker BerryGPS-IMU</a> <em>(RPi only)</em></td>
                                 <td>UART</td>
                                 <td><a href="modules/gps.html">GPS</a></td>
                             </tr>
@@ -259,36 +259,39 @@
                 <section id="requirements">
                     <h2>System Requirements</h2>
 
+                    <p>Logger runs on Windows, macOS, Linux, and Raspberry Pi. No installation required—download, extract, and run.</p>
+
                     <table class="docs-table">
                         <thead>
                             <tr>
-                                <th>Requirement</th>
-                                <th>Specification</th>
+                                <th>Platform</th>
+                                <th>Requirements</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Platform</td>
-                                <td>Raspberry Pi 5 (Pi 4 compatible)</td>
+                                <td><strong>Windows</strong></td>
+                                <td>Windows 10 or later (64-bit)</td>
                             </tr>
                             <tr>
-                                <td>Operating System</td>
-                                <td>Raspberry Pi OS Bookworm</td>
+                                <td><strong>macOS</strong></td>
+                                <td>macOS 11 (Big Sur) or later</td>
                             </tr>
                             <tr>
-                                <td>Python</td>
-                                <td>3.11+</td>
+                                <td><strong>Linux</strong></td>
+                                <td>Ubuntu 20.04+ or equivalent (x86_64)</td>
                             </tr>
                             <tr>
-                                <td>RAM</td>
-                                <td>4GB minimum, 8GB recommended</td>
-                            </tr>
-                            <tr>
-                                <td>Storage</td>
-                                <td>USB 3.0 SSD recommended for video recording</td>
+                                <td><strong>Raspberry Pi</strong></td>
+                                <td>Pi 4/5 with Raspberry Pi OS Bookworm (ARM64)</td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Platform-Specific Features</h3>
+                        <p><strong>GPS module</strong> and <strong>CSI cameras</strong> are only available on Raspberry Pi. All other modules work on all platforms.</p>
+                    </div>
                 </section>
             </article>
 

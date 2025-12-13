@@ -117,81 +117,80 @@
                 <section id="requirements">
                     <h2>System Requirements</h2>
 
+                    <p>Logger runs on <strong>Windows</strong>, <strong>macOS</strong>, <strong>Linux</strong>, and <strong>Raspberry Pi</strong>.</p>
+
                     <table class="docs-table">
                         <thead>
                             <tr>
-                                <th>Requirement</th>
-                                <th>Specification</th>
+                                <th>Platform</th>
+                                <th>Requirements</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Platform</td>
-                                <td>Raspberry Pi 5 (Pi 4 compatible)</td>
+                                <td><strong>Windows</strong></td>
+                                <td>Windows 10 or later (64-bit)</td>
                             </tr>
                             <tr>
-                                <td>Operating System</td>
-                                <td>Raspberry Pi OS Bookworm (64-bit recommended)</td>
+                                <td><strong>macOS</strong></td>
+                                <td>macOS 11 (Big Sur) or later</td>
                             </tr>
                             <tr>
-                                <td>Python</td>
-                                <td>3.11 or newer</td>
+                                <td><strong>Linux</strong></td>
+                                <td>Ubuntu 20.04+ or equivalent (x86_64)</td>
                             </tr>
                             <tr>
-                                <td>RAM</td>
-                                <td>4GB minimum, 8GB recommended</td>
-                            </tr>
-                            <tr>
-                                <td>Storage</td>
-                                <td>USB 3.0 SSD recommended for video recording</td>
+                                <td><strong>Raspberry Pi</strong></td>
+                                <td>Pi 4/5 with Raspberry Pi OS Bookworm (ARM64)</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="docs-callout docs-callout-info">
                         <h3>Storage Recommendations</h3>
-                        <p>For video recording, we strongly recommend using a USB 3.0 SSD rather than the microSD card. SD cards can cause frame drops during high-bitrate video capture.</p>
+                        <p>For video recording, we recommend using an SSD. On Raspberry Pi, use a USB 3.0 SSD rather than the microSD card to avoid frame drops during high-bitrate video capture.</p>
                     </div>
                 </section>
 
                 <section id="installation">
                     <h2>Installation</h2>
 
-                    <h3>Option 1: Download Pre-built Package</h3>
-                    <p>Download the latest release from our <a href="../software.html">Software page</a>.</p>
+                    <p><strong>No installation required!</strong> Download the appropriate package for your platform, extract (if needed), and run.</p>
 
-                    <h3>Option 2: Install from Source</h3>
+                    <h3>Windows</h3>
                     <ol class="docs-steps">
-                        <li>
-                            <strong>Clone the repository</strong>
-                            <pre class="docs-code"><code>git clone https://github.com/redscientific/logger.git
-cd logger</code></pre>
-                        </li>
-                        <li>
-                            <strong>Create a virtual environment</strong>
-                            <pre class="docs-code"><code>python3 -m venv venv
-source venv/bin/activate</code></pre>
-                        </li>
-                        <li>
-                            <strong>Install dependencies</strong>
-                            <pre class="docs-code"><code>pip install -r requirements.txt</code></pre>
-                        </li>
-                        <li>
-                            <strong>Run Logger</strong>
-                            <pre class="docs-code"><code>python -m rpi_logger</code></pre>
-                        </li>
+                        <li>Download <code>RPi-Logger-Windows.zip</code> from the <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">GitHub Releases</a></li>
+                        <li>Extract the zip file</li>
+                        <li>Run <code>RPi Logger.exe</code></li>
                     </ol>
 
-                    <h3>System Dependencies</h3>
-                    <p>Some modules require additional system packages:</p>
-                    <pre class="docs-code"><code># Camera support (CSI cameras)
-sudo apt install libcamera-dev python3-libcamera python3-picamera2
+                    <h3>macOS</h3>
+                    <ol class="docs-steps">
+                        <li>Download <code>RPi-Logger-macOS.zip</code> from the <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">GitHub Releases</a></li>
+                        <li>Extract the zip file</li>
+                        <li>Run <code>RPi Logger.app</code></li>
+                        <li>On first launch, you may need to authorize the app in <strong>System Preferences &gt; Security &amp; Privacy</strong></li>
+                    </ol>
 
-# Audio support
-sudo apt install portaudio19-dev
+                    <h3>Linux</h3>
+                    <ol class="docs-steps">
+                        <li>Download <code>RPi-Logger-x86_64.AppImage</code> or <code>RPi-Logger-Linux-x86_64.tar.gz</code> from the <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">GitHub Releases</a></li>
+                        <li>For AppImage: <pre class="docs-code"><code>chmod +x RPi-Logger-x86_64.AppImage
+./RPi-Logger-x86_64.AppImage</code></pre></li>
+                        <li>For tar.gz: Extract and run <code>./rpi-logger</code></li>
+                    </ol>
 
-# GPS support (optional)
-sudo apt install gpsd gpsd-clients</code></pre>
+                    <h3>Raspberry Pi</h3>
+                    <ol class="docs-steps">
+                        <li>Download <code>RPi-Logger-RaspberryPi-arm64.tar.gz</code> from the <a href="https://github.com/JoelCooperPhD/RPi_Logger/releases" target="_blank" rel="noopener">GitHub Releases</a></li>
+                        <li>Extract: <pre class="docs-code"><code>tar -xzf RPi-Logger-RaspberryPi-arm64.tar.gz</code></pre></li>
+                        <li>Run: <pre class="docs-code"><code>./rpi-logger</code></pre></li>
+                    </ol>
+
+                    <div class="docs-callout docs-callout-info">
+                        <h3>Running from Source</h3>
+                        <p>For development or to run from source, clone the <a href="https://github.com/JoelCooperPhD/RPi_Logger" target="_blank" rel="noopener">GitHub repository</a> and follow the instructions in the README.</p>
+                    </div>
                 </section>
 
                 <section id="first-launch">
@@ -227,7 +226,7 @@ sudo apt install gpsd gpsd-clients</code></pre>
                         <li><strong>Cameras</strong> &mdash; USB webcams, auto-detected</li>
                     </ul>
 
-                    <h3>CSI Cameras</h3>
+                    <h3>CSI Cameras (Raspberry Pi only)</h3>
                     <p>Raspberry Pi camera modules connect via the ribbon cable:</p>
                     <ol>
                         <li>Power off the Pi</li>
